@@ -1,0 +1,43 @@
+<div class="sb-title">
+  <span class="icon"><span class="icon-user"></span></span>
+  <h3>Login</h3>
+</div>
+<div class="sb-con">
+  <form method="post" id="UserLoginForm" action="/?page=home">
+    <div class="red">error here</div>
+    <br />
+    <div>
+      <div class="input text required">
+        <label for="UserLogin"></label>
+        <input
+          type="text"
+          name="username"
+          class="bar curved5"
+          title="Login"
+          id="login-user"
+          maxlength="20"
+        />
+      </div>
+      <div class="input password required">
+        <label for="UserPassword"></label>
+        <input
+          type="password"
+          name="password"
+          class="bar curved5"
+          title="Senha"
+          id="login-pass"
+        />
+      </div>
+      <button type="submit" class="button" name="login" style="min-width: 90px">
+        Login
+      </button>
+      <a
+        routerLink="register"
+        class="button"
+        style="min-width: 80px; float: right"
+        >Register</a
+      >
+    </div>
+  </form>
+</div>
+<div class="sb-end"></div>

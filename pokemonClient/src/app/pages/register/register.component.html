@@ -1,0 +1,102 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div style="text-align: center">
+    <p>Sign up for free and <strong>get one day premium!</strong></p>
+  </div>
+  <table width="660" cellspacing="0" cellpadding="0">
+    <tr>
+      <td colspan="2" class="top_first_td">Personal</td>
+    </tr>
+    <tr>
+      <td colspan="2" style="padding-bottom: 10px"></td>
+    </tr>
+    <tr>
+      <td class="normal_first_td" width="150px">Username:</td>
+      <td class="normal_td">
+        <input
+          name="username"
+          formControlName="username"
+          type="text"
+          class="text_long"
+          maxlength="10"
+        />
+      </td>
+    </tr>
+    <tr>
+      <td class="normal_first_td">Password:</td>
+      <td class="normal_td">
+        <input
+          type="password"
+          name="password"
+          formControlName="password"
+          class="text_long"
+        />
+      </td>
+    </tr>
+    <tr>
+      <td class="normal_first_td">Repeat password:</td>
+      <td class="normal_td">
+        <input
+          type="password"
+          name="password2"
+          formControlName="password2"
+          class="text_long"
+        />
+      </td>
+    </tr>
+    <tr>
+      <td class="normal_first_td">E-mail:</td>
+      <td class="normal_td">
+        <input
+          type="text"
+          name="email"
+          formControlName="email"
+          class="text_long"
+        />
+      </td>
+    </tr>
+    <tr>
+      <td class="normal_first_td">Country:</td>
+      <td class="normal_td">
+        <select name="country" class="text_select" formControlName="country">
+          <option *ngFor="let country of countries" [value]="country">
+            {{ country }}
+          </option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td class="normal_first_td">Personality:</td>
+      <td class="normal_td">
+        <select
+          name="character"
+          value=""
+          class="text_select"
+          formControlName="character"
+        >
+          <option *ngFor="let character of characters" [value]="character.naam">
+            {{ character.naam }}
+          </option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td class="normal_first_td">World:</td>
+      <td class="normal_td">
+        <select name="world" class="text_select" formControlName="world">
+          <option *ngFor="let world of worlds" [value]="world">
+            {{ world }}
+          </option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" style="padding-bottom: 10px"></td>
+    </tr>
+    <tr>
+      <td class="normal_first_td">&nbsp;</td>
+      <td class="normal_td">
+        <button type="submit" name="registreer" class="button">Signup!</button>
+      </td>
+    </tr>
+  </table>
+</form>

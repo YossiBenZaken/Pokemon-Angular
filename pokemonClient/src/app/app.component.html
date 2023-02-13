@@ -1,0 +1,111 @@
+<div class="wrapeer">
+  <div class="container">
+    <div id="header">
+      <div class="hbg">
+        <div id="logo">
+          <a routerLink="home"
+            ><img
+              style="height: 50px"
+              src="https://pokeworld.nl/img/pokeworld.png"
+          /></a>
+        </div>
+        <div class="space">
+          <div class="menu nav">
+            <ul class="menu main-navigation">
+              <li class="menu li">
+                <a routerLink="home">Home</a>
+              </li>
+              <li class="menu li">
+                <a routerLink="register">Register</a>
+              </li>
+              <li class="menu li">
+                <a routerLink="information">Information</a>
+              </li>
+              <li class="menu li">
+                <a routerLink="statistics">Statistics</a>
+              </li>
+              <li class="menu li">
+                <a routerLink="rankinglist">Ranking List</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="header-bg">
+      <div class="w960">
+        <!-- breadcrumbs: top -->
+        <div class="breadcrumbs"></div>
+
+        <!-- social networks -->
+        <div class="rel">
+          <div class="social"></div>
+        </div>
+      </div>
+    </div>
+    <div id="main-top"><div class="rel"></div></div>
+    <div id="main">
+      <div id="content">
+        <div class="box-top"></div>
+        <div class="box-title">
+          <span class="icon"><span class="icon-ann"></span></span>
+          <h2>Welcome <span>PokemonAngular</span></h2>
+        </div>
+        <div class="box-con">
+          <div class="rel"></div>
+          <div class="teksts">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+        <div class="box-btm"></div>
+        <div class="box-top"></div>
+        <div class="box-title">
+          <span class="icon"><span class="icon-ann"></span></span>
+          <h2>Online<span> Players</span></h2>
+        </div>
+        <div class="box-con">
+          <div class="rel"></div>
+          <div class="teksts">Show online here</div>
+        </div>
+        <div class="box-btm"></div>
+      </div>
+      <div id="sidebar">
+        <!-- user panel -->
+        <app-login></app-login>
+
+        <div class="sb-title">
+          <span class="icon"><span class="icon-moon"></span></span>
+
+          <h3>Team</h3>
+        </div>
+        <div class="sb-con">
+          <div class="pokemon_hand_box">
+            <ul>
+              Show Team
+            </ul>
+          </div>
+          <div class="sb-sep"></div>
+          <a href="?page=extended" class="ilink"><b>Extended</b></a>
+
+          <div class="sb-title">
+            <span class="icon"><span class="icon-search"></span></span>
+
+            <h3>Search_Pokemon</h3>
+          </div>
+          <div class="sb-con" style="padding: 20px">
+            <form method="get" action="/">
+              <input
+                name="pokemon"
+                type="text"
+                class="text_long"
+                style="width: 95%"
+              /><br /><br />
+              <button type="submit" class="button" name="zoeken">Search</button>
+            </form>
+          </div>
+          <div class="sb-end"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

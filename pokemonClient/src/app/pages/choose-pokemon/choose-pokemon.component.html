@@ -1,0 +1,236 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="red" *ngIf="f.choose.touched && f.choose.invalid">
+    Must choose one pokemon
+  </div>
+  <table [width]="600" [border]="0" [cellSpacing]="0" [cellPadding]="0">
+    <tr>
+      <td [width]="120" valign="top">
+        <img src="../../../assets/images/oak.png" />
+      </td>
+      <td [width]="480" valign="top">
+        <div style="padding-bottom: 20px">
+          Okay, enough talking about all those rules.<br /><br />
+          I want to give you a pokemon because I think you're ready.<br />
+          Below is a list of pokemon I have available for you. Choose the one
+          you want:
+        </div>
+        <div *ngIf="pokemons.starter.length > 0">
+          <h2>Starter Pokemon</h2>
+          <div style="padding-bottom: 15px">
+            <table
+              [width]="480"
+              [border]="0"
+              [cellSpacing]="0"
+              [cellPadding]="0"
+            >
+              <tr>
+                <td class="top_first_td" [width]="50">#</td>
+                <td class="top_first_td" [width]="50">&nbsp;</td>
+                <td class="top_td" [width]="150">Starter Name</td>
+                <td class="top_td" [width]="230">Type</td>
+              </tr>
+              <tr *ngFor="let starter of pokemons.starter">
+                <td class="normal_first_td">
+                  <input
+                    type="radio"
+                    name="choose"
+                    formControlName="choose"
+                    [value]="starter['wild_id']"
+                    [id]="starter['wild_id']"
+                  />
+                </td>
+                <td class="normal_td">
+                  <label [for]="starter['wild_id']"
+                    ><img
+                      [src]="
+                        '../../../assets/images/pokemon/icon/' +
+                        starter['wild_id'] +
+                        '.gif'
+                      "
+                      width="32"
+                      height="32"
+                      [alt]="starter['naam']"
+                  /></label>
+                </td>
+                <td class="normal_td">
+                  <label [for]="starter['wild_id']">{{
+                    starter["naam"]
+                  }}</label>
+                </td>
+                <td class="normal_td">
+                  <label [for]="starter['wild_id']">
+                    <table>
+                      <tr>
+                        <td>
+                          <div
+                            [ngClass]="['type', starter['type1'].toLowerCase()]"
+                          >
+                            {{ starter["type1"] }}
+                          </div>
+                        </td>
+                        <td *ngIf="starter.type2 !== ''">
+                          <div
+                            [ngClass]="['type', starter['type2'].toLowerCase()]"
+                          >
+                            {{ starter["type2"] }}
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                  </label>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div *ngIf="pokemons.normal.length > 0">
+          <h2>Normal Pokemon</h2>
+          <div style="padding-bottom: 15px">
+            <table
+              [width]="480"
+              [border]="0"
+              [cellSpacing]="0"
+              [cellPadding]="0"
+            >
+              <tr>
+                <td class="top_first_td" [width]="50">#</td>
+                <td class="top_first_td" [width]="50">&nbsp;</td>
+                <td class="top_td" [width]="150">Starter Name</td>
+                <td class="top_td" [width]="230">Type</td>
+              </tr>
+              <tr *ngFor="let normal of pokemons.normal">
+                <td class="normal_first_td">
+                  <input
+                    type="radio"
+                    name="choose"
+                    formControlName="choose"
+                    [value]="normal['wild_id']"
+                    [id]="normal['wild_id']"
+                  />
+                </td>
+                <td class="normal_td">
+                  <label [for]="normal['wild_id']"
+                    ><img
+                      [src]="
+                        '../../../assets/images/pokemon/icon/' +
+                        normal['wild_id'] +
+                        '.gif'
+                      "
+                      width="32"
+                      height="32"
+                      [alt]="normal['naam']"
+                  /></label>
+                </td>
+                <td class="normal_td">
+                  <label [for]="normal['wild_id']">{{ normal["naam"] }}</label>
+                </td>
+                <td class="normal_td">
+                  <label [for]="normal['wild_id']">
+                    <table>
+                      <tr>
+                        <td>
+                          <div
+                            [ngClass]="['type', normal['type1'].toLowerCase()]"
+                          >
+                            {{ normal["type1"] }}
+                          </div>
+                        </td>
+                        <td *ngIf="normal.type2 !== ''">
+                          <div
+                            [ngClass]="['type', normal['type2'].toLowerCase()]"
+                          >
+                            {{ normal["type2"] }}
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                  </label>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div *ngIf="pokemons.babies.length > 0">
+          <h2>Baby Pokemon</h2>
+          <div style="padding-bottom: 15px">
+            <table
+              [width]="480"
+              [border]="0"
+              [cellSpacing]="0"
+              [cellPadding]="0"
+            >
+              <tr>
+                <td class="top_first_td" [width]="50">#</td>
+                <td class="top_first_td" [width]="50">&nbsp;</td>
+                <td class="top_td" [width]="150">Starter Name</td>
+                <td class="top_td" [width]="230">Type</td>
+              </tr>
+              <tr *ngFor="let babies of pokemons.babies">
+                <td class="normal_first_td">
+                  <input
+                    type="radio"
+                    name="choose"
+                    formControlName="choose"
+                    [value]="babies['wild_id']"
+                    [id]="babies['wild_id']"
+                  />
+                </td>
+                <td class="normal_td">
+                  <label [for]="babies['wild_id']"
+                    ><img
+                      [src]="
+                        '../../../assets/images/pokemon/icon/' +
+                        babies['wild_id'] +
+                        '.gif'
+                      "
+                      width="32"
+                      height="32"
+                      [alt]="babies['naam']"
+                  /></label>
+                </td>
+                <td class="normal_td">
+                  <label [for]="babies['wild_id']">{{ babies["naam"] }}</label>
+                </td>
+                <td class="normal_td">
+                  <label [for]="babies['wild_id']">
+                    <table>
+                      <tr>
+                        <td>
+                          <div
+                            [ngClass]="['type', babies['type1'].toLowerCase()]"
+                          >
+                            {{ babies["type1"] }}
+                          </div>
+                        </td>
+                        <td *ngIf="babies.type2 !== ''">
+                          <div
+                            [ngClass]="['type', babies['type2'].toLowerCase()]"
+                          >
+                            {{ babies["type2"] }}
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                  </label>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td class="normal_first_td">
+        <button
+          type="submit"
+          name="submit"
+          class="button"
+          [disabled]="!form.valid"
+        >
+          Choose
+        </button>
+      </td>
+    </tr>
+  </table>
+</form>
