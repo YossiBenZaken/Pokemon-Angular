@@ -1,0 +1,132 @@
+<div *ngIf="pokemonId == '0'; else pokemon">Choose a Pok&eacute;mon.</div>
+<ng-template #pokemon>
+  <div style="display: flex; justify-content: center">
+    <div style="padding-bottom: 20px">
+      <table [width]="400">
+        <tr>
+          <td [width]="200">
+            <img
+              [src]="normalSrc()"
+              [alt]="'normal ' + pokemonDetails.naam"
+              [title]="pokemonDetails.naam"
+            />
+            <img
+              [src]="shinySrc()"
+              [alt]="'Shiny ' + pokemonDetails.naam"
+              [title]="pokemonDetails.naam"
+            />
+          </td>
+          <td [width]="200" valign="bottom">
+            <div style="padding-left: 8px">
+              # {{ pokemonId }}<br />
+              {{ pokemonDetails.naam }}<br />
+              <table>
+                <tr>
+                  <td>
+                    <div
+                      [ngClass]="[
+                        'type',
+                        pokemonDetails['type1'].toLowerCase()
+                      ]"
+                    >
+                      {{ pokemonDetails["type1"] }}
+                    </div>
+                  </td>
+                  <td *ngIf="pokemonDetails.type2 !== ''">
+                    <div
+                      [ngClass]="[
+                        'type',
+                        pokemonDetails['type2'].toLowerCase()
+                      ]"
+                    >
+                      {{ pokemonDetails["type2"] }}
+                    </div>
+                  </td>
+                </tr>
+              </table>
+              {{ pokemonDetails.naam }} is {{ checkRare() }}<br />
+              Lives in {{ pokemonDetails.wereld }}.<br />
+              {{ getArea() }}<br />
+              There are {{ pokemonDetails.hoeveelingame | number }}
+              {{ pokemonDetails.naam }}s in the game.
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <table [width]="400">
+      <tr>
+        <td colspan="2" style="padding-right: 20px; text-align: center">
+          <h3>Attack & Evolution</h3>
+        </td>
+      </tr>
+      <tr *ngIf="levels.length === 0; else level">
+        <td colspan="2">Does not evolve or learn new attacks.</td>
+      </tr>
+      <ng-template #level>
+        <tr>
+          <td width="100"><strong>Level</strong></td>
+          <td width="100"><strong>Evolution</strong></td>
+        </tr>
+        <tr *ngFor="let level of levels">
+          <ng-container *ngIf="level.wat === 'att'">
+            <td>{{ level.level }}</td>
+            <td>{{ level.aanval }}</td>
+          </ng-container>
+          <ng-container *ngIf="level.wat === 'evo' && level.level < 100">
+            <td>{{ level.level }}</td>
+            <td>
+              <img
+                [src]="iconSrc(level.nieuw_id)"
+                [alt]="nameOfEvo(level.nieuw_id)"
+                [title]="nameOfEvo(level.nieuw_id)"
+              />
+            </td>
+          </ng-container>
+          <ng-container *ngIf="level.wat === 'evo' && level.stone !== ''">
+            <td>
+              <img
+                [src]="stoneSrc(level.stone)"
+                (error)="megaStone($event, level.stone)"
+                [alt]="level.stone"
+                [title]="level.stone"
+              />
+            </td>
+            <td>
+              <img
+                [src]="iconSrc(level.nieuw_id)"
+                [alt]="nameOfEvo(level.nieuw_id)"
+                [title]="nameOfEvo(level.nieuw_id)"
+              />
+            </td>
+          </ng-container>
+          <ng-container *ngIf="level.wat === 'evo' && level.trade === 1">
+            <td>
+              <img
+                src="../../../../../assets/images/icons/trade.png"
+                alt="Trade"
+                title="Trade"
+              />
+            </td>
+            <td>
+              <img
+                [src]="iconSrc(level.nieuw_id)"
+                [alt]="nameOfEvo(level.nieuw_id)"
+                [title]="nameOfEvo(level.nieuw_id)"
+              />
+            </td>
+          </ng-container>
+        </tr>
+        <tr>
+          <td colspan="2" valign="center">
+            <br /><a
+              href="?page=catched&pokemon=' . $info['wild_id'] . '"
+              class="button"
+              >Who caught him?</a
+            >
+          </td>
+        </tr>
+      </ng-template>
+    </table>
+  </div>
+</ng-template>

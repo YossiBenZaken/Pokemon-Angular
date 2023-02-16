@@ -35,4 +35,11 @@ export const routes: Routes = [
       ),
     // canActivate: [UserGuardService],
   },
+  {
+    path: 'information',
+    loadChildren: () =>
+      import('./pages/information/information.routes').then(
+        (m) => m.InformationRoutes
+      ),
+  },
 ];

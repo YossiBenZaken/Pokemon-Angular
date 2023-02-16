@@ -1,0 +1,20 @@
+<div style="padding-bottom: 14px">
+  <form [formGroup]="form">
+    <select
+      class="text_select"
+      style="float: none"
+      id="pokemon"
+      name="pokemon"
+      formControlName="pokemon"
+    >
+      <option value="0">Choose a Pok&eacute;mon:</option>
+      <option *ngFor="let option of options" [value]="option.wild_id">
+        {{ computerName(option.naam) }}
+      </option>
+    </select>
+  </form>
+  <app-pokemon-details
+    [pokemonId]="selectedPokemon"
+    [pokemons]="options"
+  ></app-pokemon-details>
+</div>
