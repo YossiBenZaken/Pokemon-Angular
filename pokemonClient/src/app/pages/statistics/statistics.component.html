@@ -1,0 +1,217 @@
+<span id="statics">
+  <table width="250" [border]="0">
+    <tr>
+      <td colspan="2"><h3>Game statistics</h3></td>
+    </tr>
+    <tr>
+      <td>Number of members:</td>
+      <td>
+        <img
+          src="../../../assets/images/icons/lid.png"
+          style="margin-bottom: -3px"
+        />
+        <strong>{{ topStats.userstotal | number }}</strong>
+      </td>
+    </tr>
+    <tr>
+      <td>Silver in the game:</td>
+      <td>
+        <img
+          src="../../../assets/images/icons/silver.png"
+          title="Silver"
+          style="margin-bottom: -3px"
+        />
+        <strong>{{ topStats.rubytotal | number }}</strong>
+      </td>
+    </tr>
+    <tr>
+      <td>Number of Pok&eacute;mon:</td>
+      <td>
+        <img
+          src="../../../assets/images/icons/ball.gif"
+          style="margin-bottom: -3px"
+        />
+        <strong>{{ topStats.pokemontotal | number }}</strong>
+      </td>
+    </tr>
+    <tr>
+      <td>Total fights:</td>
+      <td>
+        <img
+          src="../../../assets/images/icons/tegenstander.png"
+          style="margin-bottom: -3px"
+        />
+        <strong>{{ topStats.matchestotal | number }}</strong>
+      </td>
+    </tr>
+  </table>
+  <hr />
+  <table width="320" [border]="0">
+    <tr>
+      <td colspan="3"><h3>Top 5 silver</h3></td>
+    </tr>
+    <tr>
+      <td width="50"><strong>#</strong></td>
+      <td width="120"><strong>Who</strong></td>
+      <td width="150"><strong>Silver</strong></td>
+    </tr>
+    <tr *ngFor="let s of top5Silver; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>
+        <a [routerLink]="['profile', s.username]"
+          >{{ s.username
+          }}<img
+            *ngIf="s.premiumaccount > 0"
+            src="../../../assets/images/icons/lidbetaald.png"
+            width="16"
+            height="16"
+            [border]="0"
+            alt="Premium member"
+            title="Premium member"
+            style="margin-bottom: -3px"
+        /></a>
+      </td>
+      <td>
+        <img
+          src="../../../assets/images/icons/silver.png"
+          title="Silver"
+          style="margin-bottom: -3px"
+        />
+        {{ s.totaal }}
+      </td>
+    </tr>
+  </table>
+  <hr />
+  <table width="320" [border]="0">
+    <tr>
+      <td colspan="3">
+        <h3>Top 5 Pok&eacute;mon</h3>
+      </td>
+    </tr>
+    <tr>
+      <td width="50">
+        <strong>#</strong>
+      </td>
+      <td width="120">
+        <strong>Who</strong>
+      </td>
+      <td width="150">
+        <strong>Amount</strong>
+      </td>
+    </tr>
+    <tr *ngFor="let s of top5NumberOfPokemon; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>
+        <a [routerLink]="['profile', s.username]"
+          >{{ s.username
+          }}<img
+            *ngIf="s.premiumaccount > 0"
+            src="../../../assets/images/icons/lidbetaald.png"
+            width="16"
+            height="16"
+            [border]="0"
+            alt="Premium member"
+            title="Premium member"
+            style="margin-bottom: -3px"
+        /></a>
+      </td>
+      <td>
+        <img
+          src="../../../assets/images/icons/ball.gif"
+          style="margin-bottom: -3px"
+        />
+        {{ s.aantalpokemon }}
+      </td>
+    </tr>
+  </table>
+  <hr />
+  <table width="320" [border]="0">
+    <tr>
+      <td colspan="3">
+        <h3>
+          Top 5 <br /><span class="smalltext">Battles won - Battles lost.</span>
+        </h3>
+      </td>
+    </tr>
+    <tr>
+      <td width="50">
+        <strong>#</strong>
+      </td>
+      <td width="120">
+        <strong>Who</strong>
+      </td>
+      <td width="150">
+        <strong>Battles</strong>
+      </td>
+    </tr>
+    <tr *ngFor="let s of top5Fights; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>
+        <a [routerLink]="['profile', s.username]"
+          >{{ s.username
+          }}<img
+            *ngIf="s.premiumaccount > 0"
+            src="../../../assets/images/icons/lidbetaald.png"
+            width="16"
+            height="16"
+            [border]="0"
+            alt="Premium member"
+            title="Premium member"
+            style="margin-bottom: -3px"
+        /></a>
+      </td>
+      <td>
+        <img
+          src="../../../assets/images/icons/tegenstander.png"
+          style="margin-bottom: -3px"
+        />
+        {{ s.gevechten }}
+      </td>
+    </tr>
+  </table>
+  <hr />
+  <table width="320" [border]="0">
+    <tr>
+      <td colspan="3">
+        <h3>
+          Top 5 <br /><span class="smalltext">Battles won - Battles lost.</span>
+        </h3>
+      </td>
+    </tr>
+    <tr>
+      <td width="50">
+        <strong>#</strong>
+      </td>
+      <td width="120">
+        <strong>Who</strong>
+      </td>
+      <td width="150">
+        <strong>When</strong>
+      </td>
+    </tr>
+    <tr *ngFor="let s of top10NewsMembers; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>
+        <img
+          src="../../../assets/images/icons/lid.png"
+          style="margin-bottom: -3px"
+        />
+        <a [routerLink]="['profile', s.username]"
+          >{{ s.username
+          }}<img
+            *ngIf="s.premiumaccount > 0"
+            src="../../../assets/images/icons/lidbetaald.png"
+            width="16"
+            height="16"
+            [border]="0"
+            alt="Premium member"
+            title="Premium member"
+            style="margin-bottom: -3px"
+        /></a>
+      </td>
+      <td>
+        {{ s.aanmeld_datum | date : "dd/MM/YYYY HH:mm" }}
+      </td>
+    </tr>
+  </table>
+</span>

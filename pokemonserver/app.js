@@ -8,6 +8,8 @@ var indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const inGameRouter = require('./routes/ingame');
 const pokemonRouter = require('./routes/pokemon');
+const infoRouter = require('./routes/information');
+const statsRouter = require('./routes/statistics');
 
 var app = express();
 var corsOptions = {
@@ -21,6 +23,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/auth', authRouter);
+app.use('/info', infoRouter);
+app.use('/stats', statsRouter);
 app.use('/ingame', inGameRouter);
 app.use('/pokemon', pokemonRouter);
 app.use('', indexRouter);

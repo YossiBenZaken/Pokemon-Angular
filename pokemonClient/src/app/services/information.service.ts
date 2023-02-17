@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class InformationService {
-  url: string = 'http://localhost:3000/auth';
+  url: string = 'http://localhost:3000/info';
   constructor(private _http: HttpClient) {}
   pokemonInfo() {
     return this._http.get<{ naam: string; wild_id: number }[]>(

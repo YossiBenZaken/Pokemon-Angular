@@ -42,4 +42,11 @@ export const routes: Routes = [
         (m) => m.InformationRoutes
       ),
   },
+  {
+    path: 'statistics',
+    loadComponent: () =>
+      import('./pages/statistics/statistics.component').then(
+        (m) => m.StatisticsComponent
+      ),
+  },
 ];
