@@ -804,16 +804,8 @@ ul:after {
   background-position: top right;
   background-repeat: repeat-y;
   padding: 4px 0 6px;
+  display: flex;
 }
-
-/*.box-con label, .ui-dialog-content label {
-      float:left;
-      width:140px;
-      padding:10px 10px;
-      text-align:right;
-      font-weight:bold;
-  }*/
-
 .box-con .input,
 .ui-dialog-content .input {
   padding-bottom: 5px;

@@ -6,9 +6,17 @@ import { UserInfo } from '../models/UserInfo.model';
   providedIn: 'root',
 })
 export class UserService {
+  url = 'http://localhost:3000';
   constructor(private _http: HttpClient) {}
   getUserInfo() {
-    return this._http.get<UserInfo>('http://localhost:3000/getUserInfo', {
+    return this._http.get<UserInfo>(this.url + '/getUserInfo', {
+      headers: {
+        Authorization: this.token(),
+      },
+    });
+  }
+  getUserPokemon() {
+    return this._http.get<any[]>(this.url + '/getUserPokemon', {
       headers: {
         Authorization: this.token(),
       },

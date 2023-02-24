@@ -4,6 +4,7 @@ import { Router, RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { UserInfo } from './models/UserInfo.model';
 import { LoginComponent } from './pages/login/login.component';
+import { MyTeamComponent } from './pages/my-team/my-team.component';
 import { UserDetailsComponent } from './pages/user-details/user-details.component';
 import { UserService } from './services/user.service';
 import * as userSlice from './slices/user-slice';
@@ -11,7 +12,13 @@ import * as userSlice from './slices/user-slice';
   selector: 'app-root',
   templateUrl: './app.component.html',
   standalone: true,
-  imports: [CommonModule, RouterModule, LoginComponent, UserDetailsComponent],
+  imports: [
+    CommonModule,
+    RouterModule,
+    LoginComponent,
+    UserDetailsComponent,
+    MyTeamComponent,
+  ],
 })
 export class AppComponent {
   title = 'pokemonClient';

@@ -1,0 +1,43 @@
+<div class="sb-title">
+  <span class="icon"><span class="icon-moon"></span></span>
+
+  <h3>Team</h3>
+</div>
+<div class="sb-con">
+  <div class="pokemon_hand_box">
+    <ul *ngIf="pokemons.length > 0">
+      <li *ngFor="let pokemon of pokemons">
+        <div class="img">
+          <img
+            [src]="
+              '../../../assets/images/' +
+              (pokemon.shiny ? 'shiny' : 'pokemon') +
+              '/icon/' +
+              pokemon.wild_id +
+              '.gif'
+            "
+            width="32"
+            height="32"
+            [alt]="computerName(pokemon.naam)"
+          />
+        </div>
+        <div class="name">
+          {{ computerName(pokemon.naam) }}
+        </div>
+        <div class="level">Lvl {{ pokemon.level }}</div>
+        <div class="status">
+          <img
+            [src]="
+              '../../../assets/images/icons/bullet_' +
+              (pokemon.leven == 0 ? 'red' : 'green') +
+              '.png'
+            "
+          />
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="sb-sep"></div>
+  <a href="?page=extended" class="ilink"><b>Extended</b></a>
+</div>
+<div class="sb-end"></div>
