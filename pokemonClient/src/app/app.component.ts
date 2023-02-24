@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { createSelector, Store } from '@ngrx/store';
 import { UserInfo } from './models/UserInfo.model';
 import { LoginComponent } from './pages/login/login.component';
 import { MyTeamComponent } from './pages/my-team/my-team.component';
@@ -23,6 +23,7 @@ import * as userSlice from './slices/user-slice';
 export class AppComponent {
   title = 'pokemonClient';
   isLogin = false;
+  isAdmin = false;
   constructor(
     private _user: UserService,
     private _router: Router,
@@ -30,6 +31,7 @@ export class AppComponent {
   ) {
     this._user.getUserInfo().subscribe(
       (info: UserInfo) => {
+        this.isAdmin = info.admin >= 1;
         _store.dispatch(userSlice.updateUser(info));
         this.isLogin = true;
         if (info.eigekregen == 0) {
@@ -42,4 +44,7 @@ export class AppComponent {
       }
     );
   }
+  user$ = this._store.select(
+    createSelector(userSlice.selectFeature, (state) => state)
+  );
 }
