@@ -49,4 +49,11 @@ export const routes: Routes = [
         (m) => m.StatisticsComponent
       ),
   },
+  {
+    path: 'rankinglist',
+    loadComponent: () =>
+      import('./pages/rankinglist/rankinglist.component').then(
+        (m) => m.RankinglistComponent
+      ),
+  },
 ];

@@ -13,4 +13,7 @@ export class AuthService {
   register(body: any) {
     return this._http.post(this.url + '/register', body);
   }
+  login(body: any) {
+    return this._http.post(this.url + '/login', body);
+  }
 }

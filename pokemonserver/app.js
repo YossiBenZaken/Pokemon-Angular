@@ -10,6 +10,7 @@ const inGameRouter = require('./routes/ingame');
 const pokemonRouter = require('./routes/pokemon');
 const infoRouter = require('./routes/information');
 const statsRouter = require('./routes/statistics');
+const rankingRouter = require('./routes/ranking');
 
 var app = express();
 var corsOptions = {
@@ -25,6 +26,7 @@ app.use(cookieParser());
 app.use('/auth', authRouter);
 app.use('/info', infoRouter);
 app.use('/stats', statsRouter);
+app.use('/ranking', rankingRouter);
 app.use('/ingame', inGameRouter);
 app.use('/pokemon', pokemonRouter);
 app.use('', indexRouter);

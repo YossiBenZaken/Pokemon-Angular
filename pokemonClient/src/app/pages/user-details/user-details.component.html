@@ -1,0 +1,85 @@
+<div class="sb-title">
+  <span class="icon"><span class="icon-moon"></span></span>
+
+  <h3>STATISTICS</h3>
+</div>
+<div class="sb-con">
+  <ul class="stats">
+    <li>
+      <label class="servertijd">Servertime</label>
+      <span>{{ time | date : "HH:mm:ss" }}</span>
+    </li>
+    <li>
+      <label class="username">Username</label>
+      <span>{{ (user$ | async)?.username }}</span>
+    </li>
+    <li>
+      <label class="world">World</label>
+      <span>{{ (user$ | async)?.wereld }}</span>
+    </li>
+    <li>
+      <label class="silver">Silver</label>
+      <span>{{ (user$ | async)?.silver }}</span>
+    </li>
+    <li>
+      <label class="gold">Gold</label>
+      <span>{{ (user$ | async)?.gold }}</span>
+    </li>
+    <li>
+      <label class="bank">Bank</label>
+      <span>{{ (user$ | async)?.bank }}</span>
+    </li>
+    <li>
+      <label class="respect">My respects</label>
+      <span>{{ (user$ | async)?.respect_add }}</span>
+    </li>
+    <li>
+      <label class="premium">Premium</label>
+      <span *ngIf="(user$ | async)?.premiumaccount! >= 1"
+        >{{ (user$ | async)?.premiumaccount }} day(s)</span
+      >
+      <span *ngIf="(user$ | async)?.premiumaccount! === 0">No</span>
+    </li>
+    <li>
+      <label class="rank">Rank progress</label><br /><br />
+
+      <div class="stats-container">
+        <div
+          [ngStyle]="{
+            width:
+              round(
+                ((user$ | async)?.rankexp! / (user$ | async)?.rankexpnodig!) *
+                  100
+              ) + '%'
+          }"
+        >
+          <span
+            >{{
+              round(
+                ((user$ | async)?.rankexp! / (user$ | async)?.rankexpnodig!) *
+                  100
+              )
+            }}%</span
+          ><span style="white-space: nowrap">{{
+            getRank((user$ | async)?.rank!).ranknaam
+          }}</span>
+        </div>
+      </div>
+    </li>
+    <li>
+      <label class="allpokemon">All Pok&eacute;mon</label><br />
+      <span>
+        <div class="stats-container">
+          <div
+            [ngStyle]="{
+              width: percentPokemon((user$ | async)?.pok_bezit!) + '%'
+            }"
+          >
+            <span>{{ percentPokemon((user$ | async)?.pok_bezit!) }}%</span>
+          </div>
+        </div>
+      </span>
+    </li>
+  </ul>
+</div>
+<div class="sb-end"></div>

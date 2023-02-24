@@ -71,8 +71,8 @@
       </div>
       <div id="sidebar">
         <!-- user panel -->
-        <app-login></app-login>
-
+        <app-login *ngIf="!isLogin"></app-login>
+        <app-user-details *ngIf="isLogin"></app-user-details>
         <div class="sb-title">
           <span class="icon"><span class="icon-moon"></span></span>
 

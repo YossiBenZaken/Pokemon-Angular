@@ -1,0 +1,74 @@
+<table width="660" [cellPadding]="0" [cellSpacing]="0">
+  <tr>
+    <td width="50" class="top_first_td">#</td>
+    <td width="50" class="top_td">&nbsp;</td>
+    <td width="180" class="top_td">Username</td>
+    <td width="110" class="top_td">Country</td>
+    <td width="180" class="top_td">Rank</td>
+    <td width="90" class="top_td">Status</td>
+  </tr>
+  <tr *ngFor="let row of listOfRankPerPage(); let i = index">
+    <td class="normal_first_td">{{ i + 1 }}</td>
+    <td class="normal_td" *ngIf="subpage == 1">
+      <img [src]="getMedal(i + 1)" />
+    </td>
+    <td class="normal_td" *ngIf="subpage != 1">&nbsp;</td>
+    <td class="normal_td">
+      <a [routerLink]="['profile', row.username]"
+        ><span
+          [ngStyle]="{
+            color:
+              row.admin === 1
+                ? 'blue'
+                : row.admin === 2
+                ? 'purple'
+                : row.admin === 3
+                ? 'red'
+                : 'black'
+          }"
+          >{{ row.username }}</span
+        ><img
+          *ngIf="row.premiumaccount > 0"
+          src="../../../assets/images/icons/lidbetaald.png"
+          width="16"
+          height="16"
+          [border]="0"
+          alt="Premium member"
+          title="Premium member"
+          style="margin-bottom: -3px"
+      /></a>
+    </td>
+    <td class="normal_td">
+      <img
+        [src]="'../../../assets/images/flags/' + row.land + '.png'"
+        [alt]="row.land"
+        [title]="row.land"
+      />
+    </td>
+    <td class="normal_td">{{ getRank(row.rank) }}</td>
+    <td class="normal_td">
+      <img
+        [src]="
+          '../../../assets/images/icons/status_' +
+          (isOnline(row.online) ? 'online' : 'offline') +
+          '.png'
+        "
+        width="18"
+        height="15"
+      />
+      {{ isOnline(row.online) ? "Online" : "Offline" }}
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="6">
+      <div class="pagination">
+        <span *ngFor="let num of listOfPagination()" (click)="changePage(num)"
+          >{{ num }}&nbsp;</span
+        >
+      </div>
+    </td>
+  </tr>
+</table>

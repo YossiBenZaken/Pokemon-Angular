@@ -511,6 +511,8 @@ ul:after {
   background-repeat: repeat-y;
   text-align: left;
   padding-top: 4px;
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 .w960 {
@@ -2526,7 +2528,9 @@ input#content {
 #messages::-webkit-scrollbar-thumb:window-inactive {
   background: #5e0d0c;
 }
-
+.pagination {
+  text-align: center;
+}
 .pagination .current {
   background-color: rgba(255, 255, 255, 0.3);
   font-weight: bold;
