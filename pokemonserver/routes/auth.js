@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const con = require('../services/db');
 const jwt = require('jsonwebtoken');
 /* GET home page. */

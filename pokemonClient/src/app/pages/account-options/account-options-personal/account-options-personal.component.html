@@ -1,0 +1,140 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <table width="400" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="200" height="25">Premium days:</td>
+      <td width="200" *ngIf="(user$ | async)?.premiumaccount! >= 1">
+        {{ (user$ | async)?.premiumaccount }} day(s) left.
+      </td>
+      <td width="200" *ngIf="(user$ | async)?.premiumaccount! === 0">
+        <a routerLink="area-market">Order premium here!</a>
+      </td>
+    </tr>
+    <tr>
+      <td height="25">Firstname:</td>
+      <td>
+        <input
+          type="text"
+          name="voornaam"
+          class="text_long"
+          formControlName="firstname"
+          maxlength="12"
+        />
+      </td>
+    </tr>
+    <tr>
+      <td height="25">Lastname:</td>
+      <td>
+        <input
+          type="text"
+          name="achternaam"
+          class="text_long"
+          formControlName="lastname"
+          maxlength="12"
+        />
+      </td>
+    </tr>
+    <tr>
+      <td height="25">Team on profile:</td>
+      <td>
+        <input
+          type="radio"
+          name="teamzien"
+          value="1"
+          id="ja"
+          formControlName="teamzien"
+        /><label style="padding-right: 17px">Yes</label>
+        <input
+          type="radio"
+          name="teamzien"
+          value="0"
+          id="nee"
+          formControlName="teamzien"
+        /><label> No</label>
+      </td>
+    </tr>
+    <tr>
+      <td height="25">Buddies on profile:</td>
+      <td>
+        <input
+          type="radio"
+          name="buddieszien"
+          value="1"
+          id="ja"
+          formControlName="buddieszien"
+        /><label style="padding-right: 17px"> Yes</label>
+        <input
+          type="radio"
+          name="buddieszien"
+          value="0"
+          id="nee"
+          formControlName="buddieszien"
+        /><label> No</label>
+      </td>
+    </tr>
+    <tr>
+      <td height="25">Badges on profile:</td>
+      <td>
+        <input
+          type="radio"
+          name="badgeszien"
+          value="1"
+          id="badges1"
+          formControlName="badgeszien"
+        /><label for="badges1" style="padding-right: 17px"> Yes</label>
+        <input
+          type="radio"
+          name="badgeszien"
+          value="0"
+          id="badges2"
+          formControlName="badgeszien"
+        /><label for="badges2"> No</label>
+      </td>
+    </tr>
+    <tr>
+      <td height="25">Duel invites:</td>
+      <td>
+        <input
+          type="radio"
+          name="dueluitnodiging"
+          value="1"
+          id="duel1"
+          formControlName="dueluitnodiging"
+        /><label for="duel1" style="padding-right: 8px"> On</label>
+        <input
+          type="radio"
+          name="dueluitnodiging"
+          value="0"
+          id="duel2"
+          formControlName="dueluitnodiging"
+        /><label for="duel2"> Off</label>
+      </td>
+    </tr>
+    <tr>
+      <td height="25">Battlescreen with images:</td>
+      <td>
+        <input
+          type="radio"
+          name="battleScreen"
+          value="1"
+          id="battleScreen1"
+          formControlName="battleScreen"
+        /><label for="battleScreen1" style="padding-right: 8px"> On</label>
+        <input
+          type="radio"
+          name="battleScreen"
+          value="0"
+          id="battleScreen2"
+          formControlName="battleScreen"
+        /><label for="battleScreen2"> Off</label>
+      </td>
+    </tr>
+    <tr>
+      <td height="25">&nbsp;</td>
+      <td>
+        <button type="submit" name="persoonlijk" class="button">
+          Change profile
+        </button>
+      </td>
+    </tr>
+  </table>
+</form>

@@ -1,32 +1,28 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { UserInfo } from '../models/UserInfo.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
-  url = 'http://localhost:3000';
+export class AccountOptionsService {
+  url = 'http://localhost:3000/account-options';
   constructor(private _http: HttpClient) {}
-  getUserInfo() {
-    return this._http.get<UserInfo>(this.url + '/getUserInfo', {
+  personal(body: any) {
+    return this._http.post<any>(this.url + '/personal', body, {
       headers: {
         Authorization: this.token(),
       },
     });
   }
-  getUserPokemon() {
-    return this._http.get<any[]>(this.url + '/getUserPokemon', {
+  password(body: any) {
+    return this._http.post<any>(this.url + '/password', body, {
       headers: {
         Authorization: this.token(),
       },
     });
   }
-  getUserBuddies() {
-    return this._http.get<{
-      requested: any[];
-      myfriends: any[];
-    }>(this.url + '/getUserBuddies', {
+  reset(body: any) {
+    return this._http.post<any>(this.url + '/restart', body, {
       headers: {
         Authorization: this.token(),
       },

@@ -1,0 +1,38 @@
+<table width="660" cellspacing="0" cellpadding="0">
+  <tr>
+    <td style="text-align: center">
+      Fill in your password and choose a new world to start in.<br /><br />
+
+      All your pokemon, items, silver and experience will be removed.<br />
+      <strong>This action cannot be reversed.</strong>
+    </td>
+  </tr>
+</table>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <table width="350" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="200" height="25">Password check:</td>
+      <td width="150">
+        <input
+          type="password"
+          name="password"
+          class="text_long"
+          formControlName="password"
+        />
+      </td>
+    </tr>
+    <tr>
+      <td height="25">World:</td>
+      <select name="world" class="text_select" formControlName="world">
+        <option *ngFor="let world of worlds" [value]="world">
+          {{ world }}
+        </option>
+      </select>
+    </tr>
+    <tr>
+      <td>
+        <button type="submit" name="opnieuw" class="button">Restart</button>
+      </td>
+    </tr>
+  </table>
+</form>

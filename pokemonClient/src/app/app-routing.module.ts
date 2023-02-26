@@ -56,4 +56,25 @@ export const routes: Routes = [
         (m) => m.RankinglistComponent
       ),
   },
+  {
+    path: 'account-options',
+    loadChildren: () =>
+      import('./pages/account-options/account-options.routes').then(
+        (m) => m.InformationRoutes
+      ),
+  },
+  {
+    path: 'promotion',
+    loadComponent: () =>
+      import('./pages/promotion/promotion.component').then(
+        (m) => m.PromotionComponent
+      ),
+  },
+  {
+    path: 'buddies',
+    loadComponent: () =>
+      import('./pages/buddies/buddies.component').then(
+        (m) => m.BuddiesComponent
+      ),
+  },
 ];

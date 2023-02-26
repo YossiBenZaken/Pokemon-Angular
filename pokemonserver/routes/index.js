@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const con = require('../services/db');
 const middleware = require('../services/middleware');
 const { ranker } = require('../services/helpers');
@@ -47,6 +47,27 @@ router.get('/getUserMessages', (req, res) => {
     (err, results) => {
       if (err) res.sendStatus(500);
       res.send(results);
+    }
+  );
+});
+router.get('/getUserBuddies', (req, res) => {
+  con.query(
+    'SELECT * FROM `friends` WHERE `to` = ? AND `status` = 0',
+    [req.userId],
+    (err, data) => {
+      if (err) res.sendStatus(500);
+      let requested = data;
+      con.query(
+        "SELECT * FROM gebruikers G, friends F WHERE CASE WHEN F.to = ? THEN F.from = G.user_id WHEN F.from = ? THEN F.to = G.user_id END AND F.status='1'",
+        [req.userId, req.userId],
+        (err, myfriends) => {
+          if (err) res.sendStatus(500);
+          res.send({
+            requested,
+            myfriends,
+          });
+        }
+      );
     }
   );
 });

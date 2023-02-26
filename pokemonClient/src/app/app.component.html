@@ -30,43 +30,29 @@
             </ul>
             <ul class="menu main-navigation" *ngIf="isLogin">
               <li class="menu">
-                <a class="menu" href="#">General</a>
+                <a class="menu">General</a>
                 <ul class="menu">
                   <li class="menu li">
                     <a href="?page=admin/panel" *ngIf="isAdmin">Admin panel</a>
                   </li>
                   <li class="menu li">
-                    <a href="#">My account &raquo;</a>
+                    <a>My account &raquo;</a>
                     <ul class="menu">
                       <li class="menu li">
-                        <a href="?page=account-options&category=personal"
-                          >Settings</a
-                        >
+                        <a routerLink="account-options/personal">Settings</a>
                       </li>
                       <li class="menu li">
-                        <a href="?page=account-options&category=profile"
-                          >My profile</a
-                        >
+                        <a routerLink="promotion">Promotion</a>
                       </li>
                       <li class="menu li">
-                        <a href="?page=account-options&category=picture"
-                          >My images</a
-                        >
-                      </li>
-                      <li class="menu li">
-                        <a href="?page=promotion">Promotion</a>
-                      </li>
-                      <li class="menu li">
-                        <a href="?page=buddies">Buddies</a>
+                        <a routerLink="buddies">Buddies</a>
                       </li>
                       <!-- <? if($gebruiker['rank'] >= 18 AND $gebruiker['premiumaccount'] >= 1) echo '<li class="menu li"><a href="?page=lvl-choose">Choose level</a></li>'; ?> -->
                       <li class="menu li">
-                        <a href="?page=account-options&category=password"
-                          >Password</a
-                        >
+                        <a routerLink="account-options/password">Password</a>
                       </li>
                       <li class="menu li">
-                        <a href="?page=account-options&category=restart"
+                        <a routerLink="account-options/restart"
                           >Reset account</a
                         >
                       </li>

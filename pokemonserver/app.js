@@ -4,13 +4,14 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const cors = require('cors');
 
-var indexRouter = require('./routes/index');
+const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const inGameRouter = require('./routes/ingame');
 const pokemonRouter = require('./routes/pokemon');
 const infoRouter = require('./routes/information');
 const statsRouter = require('./routes/statistics');
 const rankingRouter = require('./routes/ranking');
+const accountOptionsRouter = require('./routes/account-options');
 
 var app = express();
 var corsOptions = {
@@ -29,6 +30,7 @@ app.use('/stats', statsRouter);
 app.use('/ranking', rankingRouter);
 app.use('/ingame', inGameRouter);
 app.use('/pokemon', pokemonRouter);
+app.use('/account-options', accountOptionsRouter);
 app.use('', indexRouter);
 
 // catch 404 and forward to error handler

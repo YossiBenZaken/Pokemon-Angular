@@ -198,14 +198,37 @@ const userSlice = createSlice({
     updateUser: (state, action: PayloadAction<UserInfo>) => {
       return action.payload;
     },
+    personal: (
+      state,
+      action: PayloadAction<{
+        firstname?: string;
+        lastname?: string;
+        buddieszien?: string;
+        teamzien?: string;
+        badgeszien?: string;
+        dueluitnodiging?: string;
+        battleScreen?: string;
+      }>
+    ) => {
+      state.voornaam = action.payload.firstname;
+      state.achternaam = action.payload.lastname;
+      state.buddieszien = Number(action.payload.buddieszien);
+      state.teamzien = Number(action.payload.teamzien);
+      state.badgeszien = Number(action.payload.badgeszien);
+      state.dueluitnodiging = Number(action.payload.dueluitnodiging);
+      state.battleScreen = Number(action.payload.battleScreen);
+    },
+    password: (state, action: PayloadAction<{ newPass: string }>) => {
+      state.wachtwoord = action.payload.newPass;
+    },
   },
 });
 const {
   reducer,
-  actions: { updateUser },
+  actions: { updateUser, personal, password },
   name,
 } = userSlice;
 export default userSlice.reducer;
-export { name, updateUser };
+export { name, updateUser, personal, password };
 export const selectFeature =
   createFeatureSelector<ReturnType<typeof reducer>>(name);

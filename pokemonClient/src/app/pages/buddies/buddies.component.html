@@ -1,0 +1,85 @@
+<h3>Add buddies</h3>
+<table width="100%">
+  <tr>
+    <td>
+      <form>
+        <input class="text_long" type="text" name="add" />
+        <button type="submit" name="setfriend" class="button pull-right">
+          Add
+        </button>
+      </form>
+    </td>
+  </tr>
+</table>
+<h3>Open requests</h3>
+<table width="100%">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Buddy</th>
+      <th>Requested</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <form>
+      <tr *ngFor="let friends of requested">
+        <td>
+          <input type="checkbox" [id]="friends.id" [value]="friends.id" />
+          <input
+            type="hidden"
+            [value]="friends.from"
+            name="requester"
+            [id]="friends.id"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3" [align]="'right'">
+          <br />
+          <button class="button" type="submit" name="accept">Accept</button>
+          <button class="button" type="submit" name="deny">Reject</button>
+        </td>
+      </tr>
+    </form>
+  </tbody>
+</table>
+<h3>My buddies</h3>
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Buddy</th>
+      <th>Friends since</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <form>
+      <tr *ngFor="let friends of myfriends">
+        <td>
+          <input
+            type="checkbox"
+            [id]="friends['id']"
+            name="id[]"
+            [value]="friends.id"
+          />
+        </td>
+        <td>
+          <label [for]="friends.id">{{ friends["username"] }}</label>
+        </td>
+        <td>
+          <label [for]="friends.id">{{ friends["date"] }}</label>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <button class="button" type="submit" name="remove">
+            Delete friend
+          </button>
+        </td>
+      </tr>
+    </form>
+  </tbody>
+</table>
