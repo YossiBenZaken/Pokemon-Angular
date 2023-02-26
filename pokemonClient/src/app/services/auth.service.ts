@@ -16,4 +16,7 @@ export class AuthService {
   login(body: any) {
     return this._http.post(this.url + '/login', body);
   }
+  online() {
+    return this._http.get<any[]>(this.url + '/getOnline');
+  }
 }

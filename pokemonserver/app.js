@@ -12,6 +12,7 @@ const infoRouter = require('./routes/information');
 const statsRouter = require('./routes/statistics');
 const rankingRouter = require('./routes/ranking');
 const accountOptionsRouter = require('./routes/account-options');
+const marketRouter = require('./routes/market');
 
 var app = express();
 var corsOptions = {
@@ -31,6 +32,7 @@ app.use('/ranking', rankingRouter);
 app.use('/ingame', inGameRouter);
 app.use('/pokemon', pokemonRouter);
 app.use('/account-options', accountOptionsRouter);
+app.use('/market', marketRouter);
 app.use('', indexRouter);
 
 // catch 404 and forward to error handler

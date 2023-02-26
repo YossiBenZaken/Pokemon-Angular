@@ -27,7 +27,6 @@ export class RankinglistComponent implements OnInit {
   }
 
   listOfRankPerPage() {
-    console.log(this.ranks, this.page, this.page + this.max);
     return this.ranks.slice(this.page, this.page + this.max);
   }
 

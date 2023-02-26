@@ -1,0 +1,146 @@
+<table
+  width="610"
+  class="border_black"
+  [cellSpacing]="0"
+  [cellPadding]="0"
+  *ngFor="let pokemon of pokemons"
+>
+  <tr>
+    <td width="130">
+      <img
+        [src]="'../../../assets/images/items/' + pokemon.gevongenmet + '.png'"
+        [alt]="'Caught with a' + pokemon['gevongenmet']"
+        [title]="'Caught with a' + pokemon['gevongenmet']"
+      />
+    </td>
+    <td width="120"><strong>Pok&eacute;mon:</strong></td>
+    <td width="110" style="padding-left: 2px">
+      {{ pokemon["naam"] }}
+      <img
+        src="../../../assets/images/icons/lidbetaald.png"
+        width="16"
+        height="16"
+        style="margin-bottom: -3px"
+        alt="Shiny"
+        title="Shiny"
+        *ngIf="pokemon.shiny == 1"
+      />
+    </td>
+    <td width="80"><strong>Attack:</strong></td>
+    <td width="50">{{ pokemon["attack"] }}</td>
+  </tr>
+  <tr>
+    <td width="130" rowspan="11">
+      <img
+        src="../../../assets/images/icons/friend.png"
+        width="16"
+        height="16"
+        alt="Starter Pok&eacute;mon"
+        title="Starter Pok&eacute;mon"
+        *ngIf="pokemon['gehecht'] == 1"
+      /><br /><img
+        [src]="
+          '../../../assets/images/' +
+          (pokemon.shiny == 1 ? 'shiny/' : 'pokemon/') +
+          pokemon.wild_id +
+          '.gif'
+        "
+        [alt]="pokemon['naam']"
+        [title]="pokemon['naam']"
+      />
+    </td>
+    <td><strong>Nickname:</strong></td>
+    <td style="padding-left: 2px">
+      {{ pokemon["roepnaam"] == "" ? pokemon["naam"] : pokemon["roepnaam"] }}
+    </td>
+    <td><strong>Defense:</strong></td>
+    <td>{{ pokemon["defence"] }}</td>
+  </tr>
+  <tr>
+    <td><strong>Type:</strong></td>
+    <td>
+      <table>
+        <tr>
+          <td>
+            <div [class]="'type ' + pokemon['type1'].toLowerCase()">
+              {{ pokemon["type1"] }}
+            </div>
+          </td>
+          <td *ngIf="pokemon['type2'] !== ''">
+            <div [class]="'type ' + pokemon['type2'].toLowerCase()">
+              {{ pokemon["type2"] }}
+            </div>
+          </td>
+        </tr>
+      </table>
+    </td>
+    <td><strong>Speed:</strong></td>
+    <td>{{ pokemon["speed"] }}</td>
+  </tr>
+  <tr>
+    <td><strong>Level:</strong></td>
+    <td style="padding-left: 2px">{{ pokemon["level"] }}</td>
+    <td><strong>Spc. Attack:</strong></td>
+    <td>{{ pokemon["spcattack"] }}</td>
+  </tr>
+  <tr>
+    <td><strong>Mood:</strong></td>
+    <td style="padding-left: 2px">{{ pokemon["karakter"] }}</td>
+    <td><strong>Spc. Defense:</strong></td>
+    <td>{{ pokemon["spcdefence"] }}</td>
+  </tr>
+  <tr>
+    <td style="padding-top: 10px"><strong>Attacks:</strong></td>
+    <td style="padding-top: 10px" colspan="3">{{ showAttack(pokemon) }}</td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <table
+        width="480"
+        style="padding-top: 10px"
+        cellspacing="0"
+        cellpadding="0"
+      >
+        <tr>
+          <td>
+            <table width="480">
+              <tr>
+                <td width="260">
+                  <div class="bar_red">
+                    <div
+                      class="progress"
+                      [style]="'width: ' + lifePercent(pokemon) + '%'"
+                    ></div>
+                  </div>
+                </td>
+                <td width="220" class="smalltext">
+                  {{ pokemon["leven"] }} / {{ pokemon["levenmax"] }}
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <table width="480">
+              <tr>
+                <td width="260">
+                  <div class="bar_blue">
+                    <div
+                      class="progress"
+                      [style]="'width: ' + expPercent(pokemon) + '%'"
+                    ></div>
+                  </div>
+                </td>
+                <td width="220" class="smalltext">
+                  {{ pokemon["exp"] }} / {{ pokemon["expnodig"] }}
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<br />

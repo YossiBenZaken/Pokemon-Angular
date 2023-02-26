@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { createSelector, Store } from '@ngrx/store';
 import { IngameService } from 'src/app/services/ingame.service';
 import { UserService } from 'src/app/services/user.service';
@@ -8,7 +9,7 @@ import * as userSlice from '../../slices/user-slice';
   selector: 'app-my-team',
   templateUrl: './my-team.component.html',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
 })
 export class MyTeamComponent implements OnInit {
   pokemons: any[] = [];

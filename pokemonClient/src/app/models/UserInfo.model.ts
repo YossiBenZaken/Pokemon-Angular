@@ -186,4 +186,5 @@ export interface UserInfo {
   Dawnstone: number;
   Darkball: number;
   items: number;
+  token: string;
 }

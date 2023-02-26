@@ -91,11 +91,23 @@ router.post('/login', (req, res) => {
   );
 });
 
-router.get('/getCharacters', (req, res) => {
+router.get('/getCharacters', (_, res) => {
   con.query(
     'SELECT naam FROM characters ORDER BY id ASC',
     (err, characters) => {
       res.send(characters);
+    }
+  );
+});
+
+router.get('/getOnline', (_, res) => {
+  let date = new Date().getTime();
+  con.query(
+    "SELECT user_id, username, premiumaccount, admin, online, buddy, blocklist,ismobile FROM gebruikers WHERE online+'8000'>'" +
+      Math.round(date / 1000) +
+      "' ORDER BY rank DESC, rankexp DESC, username ASC",
+    (_, data) => {
+      res.send(data);
     }
   );
 });

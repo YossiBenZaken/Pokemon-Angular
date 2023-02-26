@@ -1,0 +1,88 @@
+<h3>
+  {{
+    online.length > 0
+      ? "Online Players (" + online.length + ")"
+      : "No one is online"
+  }}
+</h3>
+<br />
+
+<div *ngFor="let user of online">
+  <img
+    *ngIf="user.premiumaccount > 0 && user.admin == 0"
+    src="../../../assets/images/icons/lidbetaald.png"
+    width="16"
+    height="16"
+    alt="Premium"
+    title="Premium"
+    style="margin-bottom: -3px"
+  />
+  <span
+    [ngStyle]="{
+      color:
+        user.admin == 1
+          ? 'blue'
+          : user.admin == 2
+          ? 'purple'
+          : user.admin == 3
+          ? 'red'
+          : 'black'
+    }"
+    ><b>{{ user.username }}</b></span
+  ><img
+    [src]="
+      user.admin == 1
+        ? '../../../assets/images/icons/user_mod.png'
+        : user.admin == 2
+        ? '../../../assets/images/icons/user_suit.png'
+        : user.admin == 3
+        ? '../../../assets/images/icons/user_admin.png'
+        : '../../../assets/images/icons/user.png'
+    "
+    width="16"
+    height="16"
+    style="margin-bottom: -3px"
+  />
+</div>
+
+<hr />
+<br />
+<b><span style="color: Red">Name</span></b>
+<img
+  src="../../../assets/images/icons/user_admin.png"
+  width="16"
+  height="16"
+  alt="Crew"
+  title="Owner"
+  style="margin-bottom: -3px"
+/>
+= Owner || <b><span style="color: blue">Name</span></b>
+<img
+  src="../../../assets/images/icons/user_mod.png"
+  width="16"
+  height="16"
+  alt="Crew"
+  title="Moderator"
+  style="margin-bottom: -3px"
+/>
+= Moderator || <b><span style="color: Black">Name</span></b>
+<img
+  src="../../../assets/images/icons/user.png"
+  width="16"
+  height="16"
+  alt="User"
+  title="Speler"
+  style="margin-bottom: -3px"
+/>
+= Player
+<a routerLink="rankinglist" style="float: right"
+  ><img
+    src="../../../assets/images/icons/all.png"
+    width="16"
+    height="16"
+    alt="Ledenlijst"
+    title="Leden"
+    style="margin-bottom: -3px"
+  />
+  Member list</a
+>

@@ -1,0 +1,91 @@
+<form style="text-align: center">
+  <table width="660" cellpadding="0" cellmargin="0">
+    <tr>
+      <td width="120" rowspan="54" valign="top">
+        <img src="../../../assets/images/market.gif" />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div
+          style="padding: 10px; float: left"
+          *ngFor="let item of items; let i = index"
+        >
+          <table width="80" class="greyborder">
+            <tr>
+              <td>
+                <input type="hidden" name="teller" [value]="i" />
+                <input type="hidden" [name]="'id' + i" [value]="item['id']" />
+                <img
+                  [src]="
+                    '../../../assets/images/items/' + item['naam'] + '.png'
+                  "
+                  width="24"
+                  height="24"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="smalltext">{{ item["naam"] }}</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="smalltext"
+                  ><img
+                    [src]="
+                      '../../../assets/images/icons/' +
+                      (item.naam == 'silver' || item.naam == 'Legend kans'
+                        ? 'gold'
+                        : 'silver') +
+                      '.png'
+                    "
+                    [alt]="
+                      item.naam == 'silver' || item.naam == 'Legend kans'
+                        ? 'gold'
+                        : 'silver'
+                    "
+                    [title]="
+                      item.naam == 'silver' || item.naam == 'Legend kans'
+                        ? 'gold'
+                        : 'silver'
+                    "
+                    style="margin-bottom: -3px"
+                  />
+                  {{
+                    (item.naam == "silver" || item.naam == "Legend kans"
+                      ? item.gold
+                      : item.silver
+                    ) | number
+                  }}</span
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div style="padding-top: 5px">
+                  <input
+                    type="text"
+                    maxlength="2"
+                    class="text_short"
+                    [name]="'aantal' + item['id']"
+                    placeholder="0"
+                    style="float: none"
+                  />
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div style="padding-left: 10px">
+          <button type="submit" name="balls" class="button">To buy</button>
+        </div>
+      </td>
+    </tr>
+  </table>
+</form>

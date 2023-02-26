@@ -77,4 +77,25 @@ export const routes: Routes = [
         (m) => m.BuddiesComponent
       ),
   },
+  {
+    path: 'ranklist',
+    loadComponent: () =>
+      import('./pages/ranklist/ranklist.component').then(
+        (m) => m.RanklistComponent
+      ),
+  },
+  {
+    path: 'extended',
+    loadComponent: () =>
+      import('./pages/extended/extended.component').then(
+        (m) => m.ExtendedComponent
+      ),
+  },
+  {
+    path: 'premiummarket',
+    loadComponent: () =>
+      import('./pages/premiummarket/premiummarket.component').then(
+        (m) => m.PremiummarketComponent
+      ),
+  },
 ];

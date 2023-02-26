@@ -22,6 +22,13 @@ export class UserService {
       },
     });
   }
+  getAllUserPokemon() {
+    return this._http.get<any[]>(this.url + '/getAllUserPokemon', {
+      headers: {
+        Authorization: this.token(),
+      },
+    });
+  }
   getUserBuddies() {
     return this._http.get<{
       requested: any[];

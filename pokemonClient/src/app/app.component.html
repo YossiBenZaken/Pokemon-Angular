@@ -59,36 +59,28 @@
                     </ul>
                   </li>
                   <li class="menu li">
-                    <a href="#">Information &raquo;</a>
+                    <a>Information &raquo;</a>
                     <ul class="menu">
                       <li class="menu li">
-                        <a href="?page=information">Pokeworld</a>
+                        <a routerLink="information">Pokeworld</a>
                       </li>
                       <li class="menu li">
-                        <a href="?page=information&category=pokemon-info"
+                        <a routerLink="information/pokemon-info"
                           >Pok&eacute;mon</a
                         >
                       </li>
                       <li class="menu li">
-                        <a href="?page=information&category=attack-info"
-                          >Attack</a
-                        >
-                      </li>
-                      <li class="menu li">
-                        <a href="?page=ranklist">Ranklist</a>
+                        <a routerLink="ranklist">Ranklist</a>
                       </li>
                     </ul>
                   </li>
                   <li class="menu li">
-                    <a href="?page=search-user">Search players</a>
+                    <a routerLink="statistics">Statistics</a>
                   </li>
                   <li class="menu li">
-                    <a href="?page=statistics">Statistics</a>
+                    <a routerLink="rankinglist">Ranklist</a>
                   </li>
-                  <li class="menu li">
-                    <a href="?page=rankinglist">Ranklist</a>
-                  </li>
-                  <li class="menu li"><a href="?page=logout">Logout</a></li>
+                  <li class="menu li" (click)="logout()"><a>Logout</a></li>
                 </ul>
               </li>
 
@@ -96,10 +88,10 @@
                 <a class="menu" href="#">My home</a>
                 <ul class="menu">
                   <li class="menu li">
-                    <a href="#">My Pok&eacute;mon &raquo;</a>
+                    <a>My Pok&eacute;mon &raquo;</a>
                     <ul class="menu">
                       <li class="menu li">
-                        <a href="?page=extended">Information</a>
+                        <a routerLink="extended">Information</a>
                       </li>
                       <li class="menu li">
                         <a href="?page=modify-order">Change order</a>
@@ -290,7 +282,7 @@
                 /></a>
                 <ul class="menu">
                   <li class="menu li">
-                    <a href="?page=premiummarket">Premium Market</a>
+                    <a routerLink="premiummarket">Premium Market</a>
                   </li>
                 </ul>
               </li>
@@ -332,7 +324,9 @@
         </div>
         <div class="box-con">
           <div class="rel"></div>
-          <div class="teksts">Show online here</div>
+          <div class="teksts">
+            <app-online></app-online>
+          </div>
         </div>
         <div class="box-btm"></div>
       </div>

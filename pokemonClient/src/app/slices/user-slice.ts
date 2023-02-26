@@ -190,6 +190,7 @@ const initialState: UserInfo = {
   Dawnstone: 0,
   Darkball: 0,
   items: 1,
+  token: '',
 };
 const userSlice = createSlice({
   name: 'user',
@@ -221,14 +222,21 @@ const userSlice = createSlice({
     password: (state, action: PayloadAction<{ newPass: string }>) => {
       state.wachtwoord = action.payload.newPass;
     },
+    logout: (state) => {
+      localStorage.clear();
+      return initialState;
+    },
+    setToken: (state, action: PayloadAction<string>) => {
+      state.token = action.payload;
+    },
   },
 });
 const {
   reducer,
-  actions: { updateUser, personal, password },
+  actions: { updateUser, personal, password, logout, setToken },
   name,
 } = userSlice;
 export default userSlice.reducer;
-export { name, updateUser, personal, password };
+export { name, updateUser, personal, password, logout, setToken };
 export const selectFeature =
   createFeatureSelector<ReturnType<typeof reducer>>(name);
