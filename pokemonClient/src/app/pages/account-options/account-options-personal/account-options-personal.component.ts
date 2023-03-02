@@ -25,7 +25,10 @@ export class AccountOptionsPersonalComponent implements OnInit {
     battleScreen: new FormControl('0'),
   });
   user$!: Observable<UserInfo>;
-  constructor(private _store: Store, private _account: AccountOptionsService) {}
+  constructor(
+    private readonly _store: Store,
+    private _account: AccountOptionsService
+  ) {}
   ngOnInit(): void {
     this.user$ = this._store.select(
       createSelector(userSlice.selectFeature, (state) => state)

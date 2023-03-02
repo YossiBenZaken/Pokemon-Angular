@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   submitted: boolean = false;
   constructor(
     private _auth: AuthService,
-    private _store: Store,
+    private readonly _store: Store,
     private _user: UserService
   ) {}
 

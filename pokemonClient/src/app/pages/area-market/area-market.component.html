@@ -1,0 +1,67 @@
+<h3>Premium packs</h3>
+As soon as you buy a premium pack you become a premium member. You then have
+more options and advantages in the game!<br />
+Some examples are:<br />
+- More inbox and event space.<br />
+- More Race and Steal options.<br />
+- You can play the lucky wheel more than once a day.<br />
+- You can duel against each other.<br />
+- The time of the pokemon center is significantly lower.<br />
+- Your pokemon gain 5% extra EXP.<br />
+- And much more!
+<br /><br />
+<div id="premiumpacks">
+  <table
+    *ngFor="let p of premiumItem"
+    width="660"
+    [cellSpacing]="0"
+    [cellPadding]="0"
+    [ngClass]="[p.naam.replace(' ', '_')]"
+  >
+    <tr>
+      <td width="179">
+        <strong>{{ p["naam"] }}</strong>
+      </td>
+      <td width="170">
+        <img
+          src="../../../assets/images/icons/star-full-little.png"
+          width="16"
+          height="16"
+          alt="Premium"
+          title="Premium"
+          class="imglower"
+        />
+        {{ p["dagen"] }} premium days
+      </td>
+      <td width="100">
+        <img
+          src="../../../assets/images/icons/silver.png"
+          width="16"
+          height="16"
+          alt="Silver"
+          title="Silver"
+          class="imglower"
+        />
+        {{ p.silver | number }}
+      </td>
+      <td width="90">
+        <img
+          src="../../../assets/images/icons/gold.png"
+          width="16"
+          height="16"
+          alt="Gold"
+          title="Gold"
+          class="imglower"
+        />{{ p["gold"] }}
+      </td>
+      <td width="80">{{ p["kosten"] | currency : "EUR" }}</td>
+      <td width="41">
+        <a [routerLink]="['area-box', p['naam']]"
+          ><img
+            src="../../../assets/images/icons/buypremium.gif"
+            [title]="'Buy ' + p['naam']"
+        /></a>
+      </td>
+    </tr>
+  </table>
+</div>

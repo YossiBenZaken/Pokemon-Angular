@@ -13,7 +13,7 @@ import * as userSlice from '../slices/user-slice';
   providedIn: 'root',
 })
 export class UserGuardService implements CanActivate {
-  constructor(private _store: Store<{}>, private _router: Router) {}
+  constructor(private readonly _store: Store<{}>, private _router: Router) {}
   user$ = this._store.select(
     createSelector(userSlice.selectFeature, (state) => state)
   );

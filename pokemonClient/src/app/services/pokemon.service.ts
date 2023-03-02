@@ -21,6 +21,20 @@ export class PokemonService {
       },
     });
   }
+  modifyOrder(body: any) {
+    return this._http.post<any[]>(this.url + '/modifyOrder', body, {
+      headers: {
+        Authorization: this.token(),
+      },
+    });
+  }
+  homePokemons() {
+    return this._http.get<number>(this.url + '/homePokemons', {
+      headers: {
+        Authorization: this.token(),
+      },
+    });
+  }
   token(): string {
     if (localStorage.getItem('token')) {
       return localStorage.getItem('token')!;

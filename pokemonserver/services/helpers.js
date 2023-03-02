@@ -72,9 +72,22 @@ const rank = (rankNumber, callback) => {
     }
   );
 };
+
+const pokemonInHouse = (userId, callback) => {
+  con.query(
+    "SELECT COUNT(`id`) AS `aantal` FROM `pokemon_speler` WHERE `user_id`=? AND (opzak = 'nee' OR opzak = 'tra')",
+    [userId],
+    (err, data) => {
+      if (err) callback(err, null);
+      callback(null, data[0].aantal);
+    }
+  );
+};
+
 const rand = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 module.exports = {
   rank,
   ranker,
   rand,
+  pokemonInHouse,
 };

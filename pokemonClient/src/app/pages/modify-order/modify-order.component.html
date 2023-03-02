@@ -1,0 +1,92 @@
+<div style="padding-bottom: 10px">
+  You can change the order of your team here.<br />
+  Use the arrows to move your Pok&eacute;mon to the desired position.
+</div>
+<div id="listContainer">
+  <div
+    [id]="'item_' + pokemon['id']"
+    class="modify-order-item-old"
+    style="text-align: center; display: flex; justify-content: center"
+    *ngFor="let pokemon of pokemons; let i = index"
+  >
+    <table>
+      <tr>
+        <td colspan="2">
+          <img
+            [src]="
+              '../../../assets/images/' +
+              (pokemon.shiny ? 'shiny' : 'pokemon') +
+              '/icon/' +
+              pokemon.wild_id +
+              '.gif'
+            "
+            alt=""
+          />
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          {{ pokemon["naam"] }}
+          <img
+            src="../../../assets/images/icons/lidonbetaald.png"
+            width="16"
+            height="16"
+            style="margin-bottom: -3px"
+            alt="Shiny"
+            title="Shiny"
+            *ngIf="pokemon.shiny === 1"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">Lvl {{ pokemon["level"] }}</td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <table>
+            <tr>
+              <td>
+                <div [class]="'type ' + pokemon['type1'].toLowerCase()">
+                  {{ pokemon["type1"] }}
+                </div>
+              </td>
+              <td *ngIf="pokemon['type2'] !== ''">
+                <div [class]="'type ' + pokemon['type2'].toLowerCase()">
+                  {{ pokemon["type2"] }}
+                </div>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr *ngIf="i + 1 !== pokemons.length">
+        <td colspan="2">
+          <form>
+            <input
+              type="image"
+              (click)="changeOrder('down', i + 1, pokemon['id'])"
+              src="../../../assets/images/icons/down.png"
+              alt=""
+              width="16"
+              height="16"
+            />
+          </form>
+        </td>
+      </tr>
+      <tr *ngIf="i + 1 > 1">
+        <td colspan="2">
+          <form>
+            <input
+              type="image"
+              (click)="changeOrder('up', i + 1, pokemon['id'])"
+              src="../../../assets/images/icons/up.png"
+              alt=""
+              width="16"
+              height="16"
+            />
+          </form>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

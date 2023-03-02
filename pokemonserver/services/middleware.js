@@ -5,7 +5,7 @@ module.exports = (req, res, next) => {
     if (token) {
       jwt.verify(token, 'supersecret', (err, decoded) => {
         if (err) {
-          console.log(err);
+          console.log(err.message + ' :', err.expiredAt);
           return res.sendStatus(403);
         } else {
           req.userId = decoded.user_id;

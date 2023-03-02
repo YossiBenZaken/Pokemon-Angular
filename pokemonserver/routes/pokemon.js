@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const con = require('../services/db');
-const { rand } = require('../services/helpers');
+const { rand, pokemonInHouse } = require('../services/helpers');
 const middleware = require('../services/middleware');
 router.use(middleware);
+
 router.get('/getStarterPokemon/:world', (req, res) => {
   const { world } = req.params;
   con.query(
@@ -38,6 +39,7 @@ router.get('/getStarterPokemon/:world', (req, res) => {
     }
   );
 });
+
 router.post('/choosePokemon', (req, res) => {
   const { choose } = req.body;
   // Random pokemon loading, and its data
@@ -153,4 +155,67 @@ router.post('/choosePokemon', (req, res) => {
   );
 });
 
+router.post('/modifyOrder', (req, res) => {
+  let { wat, teller, pokemonId } = req.body;
+  if (wat === 'down') {
+    teller += 1;
+    con.query(
+      "UPDATE `pokemon_speler` SET `opzak_nummer`=`opzak_nummer`-'1' WHERE `user_id`=? AND `opzak`='ja' AND `opzak_nummer`=?",
+      [req.userId, teller]
+    );
+    con.query(
+      "UPDATE `pokemon_speler` SET `opzak_nummer`=`opzak_nummer`+'1' WHERE `id`=?",
+      [pokemonId]
+    );
+  } else if (wat === 'up') {
+    teller -= 1;
+    con.query(
+      "UPDATE `pokemon_speler` SET `opzak_nummer`=`opzak_nummer`+'1' WHERE `user_id`=? AND `opzak`='ja' AND `opzak_nummer`=?",
+      [req.userId, teller]
+    );
+    con.query(
+      "UPDATE `pokemon_speler` SET `opzak_nummer`=`opzak_nummer`-'1' WHERE `id`=?",
+      [pokemonId]
+    );
+  }
+  con.query(
+    "SELECT pw.wereld, pw.naam, pw.type1, pw.type2, pw.zeldzaamheid, pw.groei, pw.aanval_1, pw.aanval_2, pw.aanval_3, pw.aanval_4, ps.* FROM pokemon_wild AS pw INNER JOIN pokemon_speler AS ps ON ps.wild_id = pw.wild_id WHERE ps.user_id=? AND ps.opzak='ja' ORDER BY ps.opzak_nummer ASC",
+    [req.userId],
+    (err, data) => {
+      if (err) res.sendStatus(500);
+      res.send(data);
+    }
+  );
+});
+
+router.get('/homePokemons', (req, res) => {
+  pokemonInHouse(req.userId, (err, data) => {
+    if (err) res.sendStatus(500);
+    res.json(data);
+  });
+});
+
+router.post('/takeawayPokemon', (req, res) => {
+  const { id } = req.body;
+  pokemonInHouse(req.userId, (err, data) => {
+    if (err) res.sendStatus(500);
+    con.query(
+      "UPDATE `pokemon_speler` SET `opzak`='nee', `opzak_nummer`='' WHERE `id`=?",
+      [id]
+    );
+    con.query(
+      "SELECT `id`,`opzak_nummer` FROM `pokemon_speler` WHERE `user_id`=? AND `id`!=? AND `opzak`='ja' ORDER BY `opzak_nummer` ASC",
+      [req.userId, id],
+      (err, p) => {
+        for (let i = 1; i <= p.length; i++) {
+          con.query(
+            'UPDATE `pokemon_speler` SET `opzak_nummer`= ? WHERE `id`= ? ',
+            [i, p[i - 1].id]
+          );
+        }
+        res.json(data - 1);
+      }
+    );
+  });
+});
 module.exports = router;

@@ -14,7 +14,7 @@ import * as userSlice from '../../slices/user-slice';
 export class MyTeamComponent implements OnInit {
   pokemons: any[] = [];
   constructor(
-    private _store: Store,
+    private readonly _store: Store,
     private _user: UserService,
     private _inGame: IngameService
   ) {}

@@ -82,7 +82,10 @@ export class ChoosePokemonComponent implements OnInit {
   form = new FormGroup({
     choose: new FormControl('', Validators.required),
   });
-  constructor(private _pokemon: PokemonService, private _store: Store<{}>) {}
+  constructor(
+    private _pokemon: PokemonService,
+    private readonly _store: Store<{}>
+  ) {}
 
   ngOnInit() {
     this.$user

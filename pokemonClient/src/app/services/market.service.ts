@@ -14,6 +14,13 @@ export class MarketService {
       },
     });
   }
+  getPremium() {
+    return this._http.get<any[]>(this.url + '/areaMarket', {
+      headers: {
+        Authorization: this.token(),
+      },
+    });
+  }
   token(): string {
     if (localStorage.getItem('token')) {
       return localStorage.getItem('token')!;

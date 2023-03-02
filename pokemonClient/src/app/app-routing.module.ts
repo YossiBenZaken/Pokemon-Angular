@@ -98,4 +98,23 @@ export const routes: Routes = [
         (m) => m.PremiummarketComponent
       ),
   },
+  {
+    path: 'modify-order',
+    loadComponent: () =>
+      import('./pages/modify-order/modify-order.component').then(
+        (m) => m.ModifyOrderComponent
+      ),
+  },
+  {
+    path: 'house',
+    loadChildren: () =>
+      import('./pages/house/house.routes').then((m) => m.HouseRoutes),
+  },
+  {
+    path: 'area-market',
+    loadComponent: () =>
+      import('./pages/area-market/area-market.component').then(
+        (m) => m.AreaMarketComponent
+      ),
+  },
 ];

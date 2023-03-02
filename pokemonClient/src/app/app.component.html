@@ -33,7 +33,7 @@
                 <a class="menu">General</a>
                 <ul class="menu">
                   <li class="menu li">
-                    <a href="?page=admin/panel" *ngIf="isAdmin">Admin panel</a>
+                    <a href="admin/panel" *ngIf="isAdmin">Admin panel</a>
                   </li>
                   <li class="menu li">
                     <a>My account &raquo;</a>
@@ -47,7 +47,7 @@
                       <li class="menu li">
                         <a routerLink="buddies">Buddies</a>
                       </li>
-                      <!-- <? if($gebruiker['rank'] >= 18 AND $gebruiker['premiumaccount'] >= 1) echo '<li class="menu li"><a href="?page=lvl-choose">Choose level</a></li>'; ?> -->
+                      <!-- <? if($gebruiker['rank'] >= 18 AND $gebruiker['premiumaccount'] >= 1) echo '<li class="menu li"><a href="lvl-choose">Choose level</a></li>'; ?> -->
                       <li class="menu li">
                         <a routerLink="account-options/password">Password</a>
                       </li>
@@ -94,26 +94,26 @@
                         <a routerLink="extended">Information</a>
                       </li>
                       <li class="menu li">
-                        <a href="?page=modify-order">Change order</a>
+                        <a routerLink="modify-order">Change order</a>
                       </li>
                       <li class="menu li">
-                        <a href="?page=house&option=bringaway">Send home</a>
+                        <a href="house/bringaway">Send home</a>
                       </li>
                       <li class="menu li">
-                        <a href="?page=house&option=pickup">Pickup</a>
+                        <a href="house/pickup">Pickup</a>
                       </li>
                       <li class="menu li">
-                        <a href="?page=release">Release</a>
+                        <a href="release">Release</a>
                       </li>
                     </ul>
                   </li>
                   <li class="menu li">
                     <a href="#">My Items &raquo;</a>
                     <ul class="menu">
-                      <li class="menu li"><a href="?page=items">Items</a></li>
-                      <li class="menu li"><a href="?page=badges">Badges</a></li>
+                      <li class="menu li"><a href="items">Items</a></li>
+                      <li class="menu li"><a href="badges">Badges</a></li>
                       <li class="menu li">
-                        <a href="?page=pokedex&world='.$gebruiker['wereld'].'"
+                        <a href="pokedex&world='.$gebruiker['wereld'].'"
                           >Pokedex</a
                         >
                       </li>
@@ -127,13 +127,13 @@
                 <a href="#" class="menu">Activities</a>
                 <ul class="menu">
                   <li class="menu li">
-                    <a href="?page=attack/attack_map">Attack</a>
+                    <a href="attack/attack_map">Attack</a>
                   </li>
-                  <li class="menu li"><a href="?page=trainer">Trainer</a></li>
-                  <li class="menu li"><a href="?page=missies">Missions</a></li>
-                  <li class="menu li"><a href="?page=work">Work</a></li>
-                  <li class="menu li"><a href="?page=travel">Travel</a></li>
-                  <li class="menu li"><a href="?page=fishing">Fish</a></li>
+                  <li class="menu li"><a href="trainer">Trainer</a></li>
+                  <li class="menu li"><a href="missies">Missions</a></li>
+                  <li class="menu li"><a href="work">Work</a></li>
+                  <li class="menu li"><a href="travel">Travel</a></li>
+                  <li class="menu li"><a href="fishing">Fish</a></li>
                 </ul>
               </li>
 
@@ -141,58 +141,54 @@
                 <a href="#" class="menu">Town</a>
                 <ul class="menu">
                   <li class="menu li">
-                    <a href="?page=pokemoncenter">Pok&eacute;moncenter</a>
+                    <a href="pokemoncenter">Pok&eacute;moncenter</a>
                   </li>
                   <li class="menu li">
-                    <a href="?page=town">City &raquo;</a>
+                    <a href="town">City &raquo;</a>
                     <ul class="menu">
                       <li class="menu li">
-                        <a href="?page=house-seller">Broker</a>
+                        <a href="house-seller">Broker</a>
                       </li>
                       <li class="menu li">
-                        <a href="?page=bank&x=pinstort">Bank</a>
+                        <a href="bank&x=pinstort">Bank</a>
                       </li>
                       <li class="menu li">
-                        <a href="?page=attack/gyms">Gym</a>
+                        <a href="attack/gyms">Gym</a>
                       </li>
                       <li class="menu li">
-                        <a href="?page=daycare">Daycare</a>
+                        <a href="daycare">Daycare</a>
                       </li>
                       <li class="menu li">
-                        <a href="?page=name-specialist">Name Specialist</a>
+                        <a href="name-specialist">Name Specialist</a>
                       </li>
                       <li class="menu li">
-                        <a href="?page=shiny-specialist">Shiny Specialist</a>
+                        <a href="shiny-specialist">Shiny Specialist</a>
                       </li>
                     </ul>
                   </li>
                   <li class="menu li">
-                    <a href="?page=pokemarket">Pok&eacute;market &raquo;</a>
+                    <a href="pokemarket">Pok&eacute;market &raquo;</a>
                     <ul class="menu">
                       <li class="menu li">
-                        <a href="?page=market&shopitem=balls"
-                          >Pok&eacute;balls</a
-                        >
+                        <a href="market&shopitem=balls">Pok&eacute;balls</a>
                       </li>
                       <li class="menu li">
-                        <a href="?page=market&shopitem=potions">Potions</a>
+                        <a href="market&shopitem=potions">Potions</a>
                       </li>
                       <li class="menu li">
-                        <a href="?page=market&shopitem=items">Items</a>
+                        <a href="market&shopitem=items">Items</a>
                       </li>
                       <li class="menu li">
-                        <a href="?page=market&shopitem=specialitems"
-                          >Vitamins</a
-                        >
+                        <a href="market&shopitem=specialitems">Vitamins</a>
                       </li>
                       <li class="menu li">
-                        <a href="?page=market&shopitem=stones">Stones</a>
+                        <a href="market&shopitem=stones">Stones</a>
                       </li>
                       <li class="menu li">
-                        <a href="?page=market&shopitem=pokemon">Eggs</a>
+                        <a href="market&shopitem=pokemon">Eggs</a>
                       </li>
                       <li class="menu li">
-                        <a href="?page=market&shopitem=attacks">Attack</a>
+                        <a href="market&shopitem=attacks">Attack</a>
                       </li>
                     </ul>
                   </li>
@@ -200,79 +196,79 @@
                     <a href="#">Rocket hideout &raquo;</a>
                     <ul class="menu">
                       <li class="menu li">
-                        <a href="?page=sell">Sell Pok&eacute;mon</a>
+                        <a href="sell">Sell Pok&eacute;mon</a>
                       </li>
                       <li class="menu li">
-                        <a href="?page=transferlist">Current sales</a>
+                        <a href="transferlist">Current sales</a>
                       </li>
                     </ul>
                   </li>
 
                   <li class="menu li">
-                    <a href="?page=casino">Game corner &raquo;</a>
+                    <a href="casino">Game corner &raquo;</a>
                     <ul class="menu">
                       <li class="menu li">
-                        <a href="?page=multiblackjack">Blackjack</a>
+                        <a href="multiblackjack">Blackjack</a>
                       </li>
                       <li class="menu li">
-                        <a href="?page=flip-a-coin">Heads or tail</a>
+                        <a href="flip-a-coin">Heads or tail</a>
                       </li>
                       <li class="menu li">
-                        <a href="?page=slots">Pok&eacute;slots</a>
+                        <a href="slots">Pok&eacute;slots</a>
                       </li>
                       <li class="menu li">
-                        <a href="?page=who-is-it-quiz">Who is it quiz</a>
+                        <a href="who-is-it-quiz">Who is it quiz</a>
                       </li>
                       <li class="menu li">
-                        <a href="?page=wheel-of-fortune">Wheel of fortune</a>
+                        <a href="wheel-of-fortune">Wheel of fortune</a>
                       </li>
                       <li class="menu li">
-                        <a href="?page=poke-scrambler">Pok&eacute;mon name</a>
+                        <a href="poke-scrambler">Pok&eacute;mon name</a>
                       </li>
                       <li class="menu li">
-                        <a href="?page=kluis">Crack the vault</a>
+                        <a href="kluis">Crack the vault</a>
                       </li>
                       <li class="menu li">
-                        <a href="?page=mystery-gift">Secret code</a>
+                        <a href="mystery-gift">Secret code</a>
                       </li>
                     </ul>
                   </li>
-                  <li class="menu li"><a href="?page=jail">Jail</a></li>
+                  <li class="menu li"><a href="jail">Jail</a></li>
                 </ul>
               </li>
               <li class="menu li">
                 <a href="#">Pokeworld</a>
                 <ul class="menu">
                   <li class="menu li">
-                    <a href="?page=trade-center">Trade</a>
+                    <a href="trade-center">Trade</a>
                   </li>
                   <li class="menu li">
-                    <a href="?page=attack/duel/invite">Duel</a>
+                    <a href="attack/duel/invite">Duel</a>
                   </li>
-                  <li class="menu li"><a href="?page=race-invite">Race</a></li>
+                  <li class="menu li"><a href="race-invite">Race</a></li>
                   <li class="menu li">
                     <a href="#">Clan &raquo;</a>
                     <ul class="menu">
                       <li class="menu li">
-                        <a href="?page=clan-profile&clan='.$gebruiker['clan'].'"
+                        <a href="clan-profile&clan='.$gebruiker['clan'].'"
                           >My clan</a
                         >
                       </li>
                       <li class="menu li">
-                        <a href="?page=clan-make">New clan</a>
+                        <a href="clan-make">New clan</a>
                       </li>
                       <li class="menu li">
-                        <a href="?page=clan-invite">Invite players</a>
+                        <a href="clan-invite">Invite players</a>
                       </li>
                       <li class="menu li">
-                        <a href="?page=clan-rank">Clan rank</a>
+                        <a href="clan-rank">Clan rank</a>
                       </li>
                     </ul>
                   </li>
                 </ul>
               </li>
               <li class="menu li">
-                <a href="?page=area-market"
+                <a href="area-market"
                   >Premium
                   <img
                     src="../assets/images/items/Poke ball.png"

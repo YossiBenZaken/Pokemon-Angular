@@ -17,7 +17,10 @@ export class AccountOptionsPasswordComponent {
     currentPass: new FormControl(''),
   });
   currentPass!: string;
-  constructor(private _store: Store, private _account: AccountOptionsService) {
+  constructor(
+    private readonly _store: Store,
+    private _account: AccountOptionsService
+  ) {
     this._store
       .select(createSelector(userSlice.selectFeature, (state) => state))
       .subscribe((user) => {

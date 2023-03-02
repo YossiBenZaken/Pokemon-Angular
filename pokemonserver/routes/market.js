@@ -12,4 +12,10 @@ router.get('/premiumMarket', (_, res) => {
     }
   );
 });
+
+router.get('/areaMarket', (_, res) => {
+  con.query('SELECT * FROM premium', (err, data) => {
+    res.send(data);
+  });
+});
 module.exports = router;
