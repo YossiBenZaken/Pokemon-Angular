@@ -1,4 +1,4 @@
-const con = require('./db');
+const { db } = require('./db');
 const ranker = (kind, txt, userId) => {
   switch (kind) {
     case 'race':
@@ -21,13 +21,13 @@ const ranker = (kind, txt, userId) => {
       kind = 5;
       break;
   }
-  con.query(
+  db.query(
     'SELECT `land`, `rankexp`, `rankexpnodig`, `rank` FROM `gebruikers` WHERE `user_id`= ?',
     [userId],
     (err, playerrank) => {
       rank(playerrank[0].rank, (err, rank) => {
         const result = Math.round(((rank.ranknummer / 0.11) * kind) / 3);
-        con.query(
+        db.query(
           'UPDATE `gebruikers` SET `rankexp`=`rankexp`+? WHERE `user_id`=?',
           [result, userId]
         );
@@ -35,17 +35,17 @@ const ranker = (kind, txt, userId) => {
         if (playerrank[0].rankexpnodig <= playerrank[0].rankexp) {
           let rankExpOver = playerrank[0].rankexp - playerrank[0].rankexpnodig;
           let brandNew = playerrank[0].rank + 1;
-          con.query(
+          db.query(
             'SELECT `naam`, `punten`, `naam` FROM `rank` WHERE `ranknummer`=?',
             [brandNew],
             (err, rankResult) => {
               if (brandNew == 34) {
-                con.query(
+                db.query(
                   "UPDATE `gebruikers` SET `rank`='33', `rankexp`='1', `rankexpnodig`='170000000' WHERE `user_id`=?",
                   [userId]
                 );
               } else {
-                con.query(
+                db.query(
                   'UPDATE `gebruikers` SET `rank`=?, `rankexp`=?, `rankexpnodig`=? WHERE `user_id`=?',
                   [brandNew, rankExpOver, rankResult[0].punten, userId]
                 );
@@ -58,7 +58,7 @@ const ranker = (kind, txt, userId) => {
   );
 };
 const rank = (rankNumber, callback) => {
-  con.query(
+  db.query(
     'SELECT `naam` FROM `rank` WHERE `ranknummer`=?',
     [rankNumber],
     (err, rank) => {
@@ -74,7 +74,7 @@ const rank = (rankNumber, callback) => {
 };
 
 const pokemonInHouse = (userId, callback) => {
-  con.query(
+  db.query(
     "SELECT COUNT(`id`) AS `aantal` FROM `pokemon_speler` WHERE `user_id`=? AND (opzak = 'nee' OR opzak = 'tra')",
     [userId],
     (err, data) => {

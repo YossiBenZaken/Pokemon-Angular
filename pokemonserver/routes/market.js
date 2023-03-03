@@ -1,21 +1,17 @@
 const router = require('express').Router();
-const con = require('../services/db');
+const { query } = require('../services/db');
 const middleware = require('../services/middleware');
 router.use(middleware);
 
-router.get('/premiumMarket', (_, res) => {
-  con.query(
-    "SELECT `id`, `naam`, `silver`, `gold`, `omschrijving_en` FROM `markt` WHERE `soort`='premium'",
-    (err, data) => {
-      if (err) res.sendStatus(500);
-      res.send(data);
-    }
+router.get('/premiumMarket', async (_, res) => {
+  const data = await query(
+    "SELECT `id`, `naam`, `silver`, `gold`, `omschrijving_en` FROM `markt` WHERE `soort`='premium'"
   );
+  res.send(data);
 });
 
-router.get('/areaMarket', (_, res) => {
-  con.query('SELECT * FROM premium', (err, data) => {
-    res.send(data);
-  });
+router.get('/areaMarket', async (_, res) => {
+  const data = await query('SELECT * FROM premium');
+  res.send(data);
 });
 module.exports = router;
