@@ -12,7 +12,7 @@ router.get('/getUserInfo', async (req, res) => {
   let user = data[0];
   res.send(user);
   if (user.rankexpnodig <= user.rankexp) {
-    ranker('standaard', req.userId);
+    await ranker('standaard', req.userId);
   }
 });
 router.get('/getUserPokemon', async (req, res) => {

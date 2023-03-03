@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { query } = require('../services/db');
-const { rand, pokemonInHouse } = require('../services/helpers');
+const { rand, countPokemonsInHouse } = require('../services/helpersv2');
 const middleware = require('../services/middleware');
 router.use(middleware);
 
@@ -154,32 +154,28 @@ router.post('/modifyOrder', async (req, res) => {
   res.send(data);
 });
 
-router.get('/homePokemons', (req, res) => {
-  pokemonInHouse(req.userId, (err, data) => {
-    if (err) res.sendStatus(500);
-    res.json(data);
-  });
+router.get('/homePokemons', async (req, res) => {
+  const data = await countPokemonsInHouse(req.userId);
+  res.json(data);
 });
 
-router.post('/takeawayPokemon', (req, res) => {
+router.post('/takeawayPokemon', async (req, res) => {
   const { id } = req.body;
-  pokemonInHouse(req.userId, async (err, data) => {
-    if (err) res.sendStatus(500);
+  const data = await countPokemonsInHouse(req.userId);
+  await query(
+    "UPDATE `pokemon_speler` SET `opzak`='nee', `opzak_nummer`='' WHERE `id`=?",
+    [id]
+  );
+  const p = await query(
+    "SELECT `id`,`opzak_nummer` FROM `pokemon_speler` WHERE `user_id`=? AND `id`!=? AND `opzak`='ja' ORDER BY `opzak_nummer` ASC",
+    [req.userId, id]
+  );
+  for (let i = 1; i <= p.length; i++) {
     await query(
-      "UPDATE `pokemon_speler` SET `opzak`='nee', `opzak_nummer`='' WHERE `id`=?",
-      [id]
+      'UPDATE `pokemon_speler` SET `opzak_nummer`= ? WHERE `id`= ? ',
+      [i, p[i - 1].id]
     );
-    const p = await query(
-      "SELECT `id`,`opzak_nummer` FROM `pokemon_speler` WHERE `user_id`=? AND `id`!=? AND `opzak`='ja' ORDER BY `opzak_nummer` ASC",
-      [req.userId, id]
-    );
-    for (let i = 1; i <= p.length; i++) {
-      await query(
-        'UPDATE `pokemon_speler` SET `opzak_nummer`= ? WHERE `id`= ? ',
-        [i, p[i - 1].id]
-      );
-    }
-    res.json(data - 1);
-  });
+  }
+  res.json(data - 1);
 });
 module.exports = router;

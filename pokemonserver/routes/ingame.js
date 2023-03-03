@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { query } = require('../services/db');
-const { rank } = require('../services/helpers');
+const { rank } = require('../services/helpersv2');
 const middleware = require('../services/middleware');
 router.use(middleware);
 router.get('/getSettings/:settings', async (req, res) => {
@@ -81,13 +81,12 @@ router.get('/rankOff/:kind', async (req, res) => {
     [req.userId]
   );
   let playerRank = data[0].rank;
-  rank(playerRank, async (err, rank) => {
-    const result = Math.floor(((rank.ranknummer / 0.15) * kind) / 3);
-    await query(
-      'UPDATE `gebruikers` SET `rankexp`=`rankexp`-? WHERE `user_id`=?',
-      [result, req.userId]
-    );
-    res.sendStatus(200);
-  });
+  const rankInfo = await rank(playerRank);
+  const result = Math.floor(((rankInfo.ranknummer / 0.15) * kind) / 3);
+  await query(
+    'UPDATE `gebruikers` SET `rankexp`=`rankexp`-? WHERE `user_id`=?',
+    [result, req.userId]
+  );
+  res.sendStatus(200);
 });
 module.exports = router;
