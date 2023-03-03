@@ -154,7 +154,7 @@ router.post('/modifyOrder', async (req, res) => {
   res.send(data);
 });
 
-router.get('/homePokemons', async (req, res) => {
+router.get('/pocketPokemons', async (req, res) => {
   const data = await countPokemonsInHouse(req.userId);
   res.json(data);
 });
@@ -177,5 +177,18 @@ router.post('/takeawayPokemon', async (req, res) => {
     );
   }
   res.json(data - 1);
+});
+
+router.get('/homePokemons', async (req, res) => {
+  let count = await query(
+    "SELECT COUNT(*) AS c FROM `pokemon_speler` WHERE `user_id`=? AND `opzak`='nee'",
+    [req.userId]
+  );
+  count = count[0].c;
+  const poke = await query(
+    "SELECT pokemon_speler.*, `pokemon_wild`.`naam`, `pokemon_wild`.`type1`, `pokemon_wild`.`type2`  FROM `pokemon_speler` INNER JOIN `pokemon_wild` ON `pokemon_speler`.`wild_id` = `pokemon_wild`.`wild_id` WHERE `pokemon_speler`.`user_id`=? AND `pokemon_speler`.`opzak`='nee' ORDER BY `pokemon_speler`.`wild_id` ASC",
+    [req.userId]
+  );
+  res.send({ poke, count });
 });
 module.exports = router;

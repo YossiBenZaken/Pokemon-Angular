@@ -53,7 +53,7 @@ export class BringawayComponent implements OnInit {
   }
 
   setDetails(house: string, link: string, over: number) {
-    this._pokemon.homePokemons().subscribe((inhouse) => {
+    this._pokemon.pocketPokemons().subscribe((inhouse) => {
       this.house = house;
       this.link = link;
       this.over = over - inhouse;

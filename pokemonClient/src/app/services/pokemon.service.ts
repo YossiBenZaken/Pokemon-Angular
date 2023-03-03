@@ -28,8 +28,15 @@ export class PokemonService {
       },
     });
   }
+  pocketPokemons() {
+    return this._http.get<number>(this.url + '/pocketPokemons', {
+      headers: {
+        Authorization: this.token(),
+      },
+    });
+  }
   homePokemons() {
-    return this._http.get<number>(this.url + '/homePokemons', {
+    return this._http.get<any>(this.url + '/homePokemons', {
       headers: {
         Authorization: this.token(),
       },
