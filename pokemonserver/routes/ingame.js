@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { query } = require('../services/db');
-const { rank } = require('../services/helpersv2');
+const { rank, updatePokedex } = require('../services/helpersv2');
 const middleware = require('../services/middleware');
 router.use(middleware);
 router.get('/getSettings/:settings', async (req, res) => {
@@ -18,41 +18,7 @@ router.get('/getSettings/:settings', async (req, res) => {
 });
 router.post('/updatePokedex', async (req, res) => {
   const { wild_id, old_id, wat } = req.body;
-  const data = await query(
-    'SELECT pok_gezien, pok_bezit, pok_gehad FROM gebruikers WHERE user_id = ?',
-    [req.userId]
-  );
-  let hold = data[0].pok_bezit.split(',').includes(wild_id);
-  let had = data[0].pok_gehad.split(',').includes(wild_id);
-  let had_old = data[0].pok_gehad.split(',').includes(old_id);
-  let seen = data[0].pok_gezien.split(',').includes(wild_id);
-  let query;
-  switch (wat) {
-    case 'egg':
-    case 'buy':
-      if (!seen) query = "`pok_gezien`=concat(pok_gezien,'," + wild_id + "')";
-      if (!hold) query += ",`pok_bezit`=concat(pok_bezit,'," + wild_id + "')";
-      break;
-    case 'see':
-      if (!seen) query = "`pok_gezien`=concat(pok_gezien,'," + wild_id + "')";
-      break;
-    case 'catch':
-      if (!hold) query = "`pok_bezit`=concat(pok_bezit,'," + wild_id + "')";
-      break;
-    case 'release':
-      if (!had) query = "`pok_gehad`=concat(pok_gehad,'," + wild_id + "')";
-      break;
-    case 'evo':
-      if (!seen) query = "`pok_gezien`=concat(pok_gezien,'," + wild_id + "')";
-      if (!hold) query += ",`pok_bezit`=concat(pok_bezit,'," + wild_id + "')";
-      if (!had_old) query += ",`pok_gehad`=concat(pok_gehad,'," + old_id + "')";
-      break;
-  }
-  if (query) {
-    await query('UPDATE gebruikers SET ' + query + ' WHERE user_id=?', [
-      req.userId,
-    ]);
-  }
+  await updatePokedex(wild_id, old_id, wat, req.userId);
   res.sendStatus(200);
 });
 router.get('/updateOnline', async (req, res) => {

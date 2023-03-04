@@ -35,8 +35,29 @@ export class PokemonService {
       },
     });
   }
+  takAwayPokemon(body: { id: number }) {
+    return this._http.post<number>(this.url + '/takeAwayPokemon', body, {
+      headers: {
+        Authorization: this.token(),
+      },
+    });
+  }
   homePokemons() {
     return this._http.get<any>(this.url + '/homePokemons', {
+      headers: {
+        Authorization: this.token(),
+      },
+    });
+  }
+  pickupPokemon(body: { id: number; numInBag: number }) {
+    return this._http.post(this.url + '/pickupPokemon', body, {
+      headers: {
+        Authorization: this.token(),
+      },
+    });
+  }
+  releasePokemon(body: { id: number; wild_id: number }) {
+    return this._http.post(this.url + '/release', body, {
       headers: {
         Authorization: this.token(),
       },

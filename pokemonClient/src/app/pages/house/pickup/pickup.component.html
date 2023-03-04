@@ -1,3 +1,4 @@
+{{ pokemonInBag }}
 <table width="600" cellpadding="0" cellspacing="0">
   <tr>
     <td colspan="5" valign="top">
@@ -28,7 +29,7 @@
           <td width="60" class="top_td">Take</td>
         </tr>
         <tr *ngFor="let pokemon of pokemons; let i = index">
-          <td class="normal_first_td">{{ i }}</td>
+          <td class="normal_first_td">{{ i + 1 }}</td>
           <td class="normal_td">
             <img
               [src]="
@@ -56,12 +57,14 @@
           </td>
           <td class="normal_td">{{ pokemon["level"] }}</td>
           <td class="normal_td">
-            <form method="post">
-              <button type="submit" name="wegbrengen" class="button">
-                Pickup
-              </button>
-              <input type="hidden" name="id" [value]="pokemon['id']" />
-            </form>
+            <button
+              type="button"
+              name="wegbrengen"
+              class="button"
+              (click)="pickupPokemon(pokemon.id)"
+            >
+              Pickup
+            </button>
           </td>
         </tr>
       </table>

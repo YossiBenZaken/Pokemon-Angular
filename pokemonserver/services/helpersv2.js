@@ -90,9 +90,49 @@ const countPokemonsInHouse = async (userId) => {
   return rows[0].aantal;
 };
 const rand = (min, max) => Math.floor(Math.random() * (max - min)) + min;
+
+const updatePokedex = async (wild_id, old_id, wat, userId) => {
+  const data = await query(
+    'SELECT pok_gezien, pok_bezit, pok_gehad FROM gebruikers WHERE user_id = ?',
+    [userId]
+  );
+  let hold = data[0].pok_bezit.split(',').includes(wild_id);
+  let had = data[0].pok_gehad.split(',').includes(wild_id);
+  let had_old = data[0].pok_gehad.split(',').includes(old_id);
+  let seen = data[0].pok_gezien.split(',').includes(wild_id);
+  let query;
+  switch (wat) {
+    case 'egg':
+    case 'buy':
+      if (!seen) query = "`pok_gezien`=concat(pok_gezien,'," + wild_id + "')";
+      if (!hold) query += ",`pok_bezit`=concat(pok_bezit,'," + wild_id + "')";
+      break;
+    case 'see':
+      if (!seen) query = "`pok_gezien`=concat(pok_gezien,'," + wild_id + "')";
+      break;
+    case 'catch':
+      if (!hold) query = "`pok_bezit`=concat(pok_bezit,'," + wild_id + "')";
+      break;
+    case 'release':
+      if (!had) query = "`pok_gehad`=concat(pok_gehad,'," + wild_id + "')";
+      break;
+    case 'evo':
+      if (!seen) query = "`pok_gezien`=concat(pok_gezien,'," + wild_id + "')";
+      if (!hold) query += ",`pok_bezit`=concat(pok_bezit,'," + wild_id + "')";
+      if (!had_old) query += ",`pok_gehad`=concat(pok_gehad,'," + old_id + "')";
+      break;
+  }
+  if (query) {
+    await query('UPDATE gebruikers SET ' + query + ' WHERE user_id=?', [
+      userId,
+    ]);
+  }
+};
+
 module.exports = {
   rank,
   ranker,
   rand,
   countPokemonsInHouse,
+  updatePokedex,
 };

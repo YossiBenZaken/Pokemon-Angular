@@ -1,7 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const { query } = require('../services/db');
-const { rand, countPokemonsInHouse } = require('../services/helpersv2');
+const {
+  rand,
+  countPokemonsInHouse,
+  updatePokedex,
+} = require('../services/helpersv2');
 const middleware = require('../services/middleware');
 router.use(middleware);
 
@@ -159,7 +163,7 @@ router.get('/pocketPokemons', async (req, res) => {
   res.json(data);
 });
 
-router.post('/takeawayPokemon', async (req, res) => {
+router.post('/takeAwayPokemon', async (req, res) => {
   const { id } = req.body;
   const data = await countPokemonsInHouse(req.userId);
   await query(
@@ -191,4 +195,35 @@ router.get('/homePokemons', async (req, res) => {
   );
   res.send({ poke, count });
 });
+
+router.post('/pickupPokemon', async (req, res) => {
+  const { id, numInBag } = req.body;
+  await query(
+    "UPDATE `pokemon_speler` SET `opzak`='ja', `opzak_nummer`= ? WHERE `id` = ?",
+    [numInBag, id]
+  );
+  res.send({});
+});
+
+router.post('/release', async (req, res) => {
+  const { id, wild_id } = req.body;
+  const selectedPokemon = await query(
+    'SELECT wild_id, user_id, gehecht, gevongenmet FROM pokemon_speler WHERE id = ?',
+    [id]
+  )[0];
+  await query("UPDATE gebruikers_item SET ?=?+'1' WHERE `user_id`=?", [
+    selectedPokemon.gevongenmet,
+    selectedPokemon.gevongenmet,
+    req.userId,
+  ]);
+  await updatePokedex(wild_id, '', 'release', req.userId);
+  await query('DELETE FROM pokemon_speler WHERE id = ?', [id]);
+  await query('DELETE FROM transferlijst WHERE id = ?', [id]);
+  await query(
+    "UPDATE `gebruikers` SET `aantalpokemon`=`aantalpokemon`-'1' WHERE `user_id` = ?",
+    [req.userId]
+  );
+  res.send({});
+});
+
 module.exports = router;

@@ -33,7 +33,7 @@
                 <a class="menu">General</a>
                 <ul class="menu">
                   <li class="menu li">
-                    <a href="admin/panel" *ngIf="isAdmin">Admin panel</a>
+                    <a routerLink="admin/panel" *ngIf="isAdmin">Admin panel</a>
                   </li>
                   <li class="menu li">
                     <a>My account &raquo;</a>
@@ -47,7 +47,7 @@
                       <li class="menu li">
                         <a routerLink="buddies">Buddies</a>
                       </li>
-                      <!-- <? if($gebruiker['rank'] >= 18 AND $gebruiker['premiumaccount'] >= 1) echo '<li class="menu li"><a href="lvl-choose">Choose level</a></li>'; ?> -->
+                      <!-- <? if($gebruiker['rank'] >= 18 AND $gebruiker['premiumaccount'] >= 1) echo '<li class="menu li"><a routerLink="lvl-choose">Choose level</a></li>'; ?> -->
                       <li class="menu li">
                         <a routerLink="account-options/password">Password</a>
                       </li>
@@ -85,7 +85,7 @@
               </li>
 
               <li class="menu">
-                <a class="menu" href="#">My home</a>
+                <a class="menu" routerLink="#">My home</a>
                 <ul class="menu">
                   <li class="menu li">
                     <a>My Pok&eacute;mon &raquo;</a>
@@ -97,178 +97,181 @@
                         <a routerLink="modify-order">Change order</a>
                       </li>
                       <li class="menu li">
-                        <a href="house/bringaway">Send home</a>
+                        <a routerLink="house/bringaway">Send home</a>
                       </li>
                       <li class="menu li">
-                        <a href="house/pickup">Pickup</a>
+                        <a routerLink="house/pickup">Pickup</a>
                       </li>
                       <li class="menu li">
-                        <a href="release">Release</a>
+                        <a routerLink="house/release">Release</a>
                       </li>
                     </ul>
                   </li>
                   <li class="menu li">
-                    <a href="#">My Items &raquo;</a>
+                    <a routerLink="#">My Items &raquo;</a>
                     <ul class="menu">
-                      <li class="menu li"><a href="items">Items</a></li>
-                      <li class="menu li"><a href="badges">Badges</a></li>
+                      <li class="menu li"><a routerLink="items">Items</a></li>
+                      <li class="menu li"><a routerLink="badges">Badges</a></li>
                       <li class="menu li">
-                        <a href="pokedex&world='.$gebruiker['wereld'].'"
+                        <a routerLink="pokedex&world='.$gebruiker['wereld'].'"
                           >Pokedex</a
                         >
                       </li>
-                      '; ?>
                     </ul>
                   </li>
                 </ul>
               </li>
 
               <li class="menu">
-                <a href="#" class="menu">Activities</a>
+                <a routerLink="#" class="menu">Activities</a>
                 <ul class="menu">
                   <li class="menu li">
-                    <a href="attack/attack_map">Attack</a>
+                    <a routerLink="attack/attack_map">Attack</a>
                   </li>
-                  <li class="menu li"><a href="trainer">Trainer</a></li>
-                  <li class="menu li"><a href="missies">Missions</a></li>
-                  <li class="menu li"><a href="work">Work</a></li>
-                  <li class="menu li"><a href="travel">Travel</a></li>
-                  <li class="menu li"><a href="fishing">Fish</a></li>
+                  <li class="menu li"><a routerLink="trainer">Trainer</a></li>
+                  <li class="menu li"><a routerLink="missies">Missions</a></li>
+                  <li class="menu li"><a routerLink="work">Work</a></li>
+                  <li class="menu li"><a routerLink="travel">Travel</a></li>
+                  <li class="menu li"><a routerLink="fishing">Fish</a></li>
                 </ul>
               </li>
 
               <li class="menu">
-                <a href="#" class="menu">Town</a>
+                <a routerLink="#" class="menu">Town</a>
                 <ul class="menu">
                   <li class="menu li">
-                    <a href="pokemoncenter">Pok&eacute;moncenter</a>
+                    <a routerLink="pokemoncenter">Pok&eacute;moncenter</a>
                   </li>
                   <li class="menu li">
-                    <a href="town">City &raquo;</a>
+                    <a routerLink="town">City &raquo;</a>
                     <ul class="menu">
                       <li class="menu li">
-                        <a href="house-seller">Broker</a>
+                        <a routerLink="house-seller">Broker</a>
                       </li>
                       <li class="menu li">
-                        <a href="bank&x=pinstort">Bank</a>
+                        <a routerLink="bank&x=pinstort">Bank</a>
                       </li>
                       <li class="menu li">
-                        <a href="attack/gyms">Gym</a>
+                        <a routerLink="attack/gyms">Gym</a>
                       </li>
                       <li class="menu li">
-                        <a href="daycare">Daycare</a>
+                        <a routerLink="daycare">Daycare</a>
                       </li>
                       <li class="menu li">
-                        <a href="name-specialist">Name Specialist</a>
+                        <a routerLink="name-specialist">Name Specialist</a>
                       </li>
                       <li class="menu li">
-                        <a href="shiny-specialist">Shiny Specialist</a>
+                        <a routerLink="shiny-specialist">Shiny Specialist</a>
                       </li>
                     </ul>
                   </li>
                   <li class="menu li">
-                    <a href="pokemarket">Pok&eacute;market &raquo;</a>
+                    <a routerLink="pokemarket">Pok&eacute;market &raquo;</a>
                     <ul class="menu">
                       <li class="menu li">
-                        <a href="market&shopitem=balls">Pok&eacute;balls</a>
+                        <a routerLink="market&shopitem=balls"
+                          >Pok&eacute;balls</a
+                        >
                       </li>
                       <li class="menu li">
-                        <a href="market&shopitem=potions">Potions</a>
+                        <a routerLink="market&shopitem=potions">Potions</a>
                       </li>
                       <li class="menu li">
-                        <a href="market&shopitem=items">Items</a>
+                        <a routerLink="market&shopitem=items">Items</a>
                       </li>
                       <li class="menu li">
-                        <a href="market&shopitem=specialitems">Vitamins</a>
+                        <a routerLink="market&shopitem=specialitems"
+                          >Vitamins</a
+                        >
                       </li>
                       <li class="menu li">
-                        <a href="market&shopitem=stones">Stones</a>
+                        <a routerLink="market&shopitem=stones">Stones</a>
                       </li>
                       <li class="menu li">
-                        <a href="market&shopitem=pokemon">Eggs</a>
+                        <a routerLink="market&shopitem=pokemon">Eggs</a>
                       </li>
                       <li class="menu li">
-                        <a href="market&shopitem=attacks">Attack</a>
+                        <a routerLink="market&shopitem=attacks">Attack</a>
                       </li>
                     </ul>
                   </li>
                   <li class="menu li">
-                    <a href="#">Rocket hideout &raquo;</a>
+                    <a routerLink="#">Rocket hideout &raquo;</a>
                     <ul class="menu">
                       <li class="menu li">
-                        <a href="sell">Sell Pok&eacute;mon</a>
+                        <a routerLink="sell">Sell Pok&eacute;mon</a>
                       </li>
                       <li class="menu li">
-                        <a href="transferlist">Current sales</a>
+                        <a routerLink="transferlist">Current sales</a>
                       </li>
                     </ul>
                   </li>
 
                   <li class="menu li">
-                    <a href="casino">Game corner &raquo;</a>
+                    <a routerLink="casino">Game corner &raquo;</a>
                     <ul class="menu">
                       <li class="menu li">
-                        <a href="multiblackjack">Blackjack</a>
+                        <a routerLink="multiblackjack">Blackjack</a>
                       </li>
                       <li class="menu li">
-                        <a href="flip-a-coin">Heads or tail</a>
+                        <a routerLink="flip-a-coin">Heads or tail</a>
                       </li>
                       <li class="menu li">
-                        <a href="slots">Pok&eacute;slots</a>
+                        <a routerLink="slots">Pok&eacute;slots</a>
                       </li>
                       <li class="menu li">
-                        <a href="who-is-it-quiz">Who is it quiz</a>
+                        <a routerLink="who-is-it-quiz">Who is it quiz</a>
                       </li>
                       <li class="menu li">
-                        <a href="wheel-of-fortune">Wheel of fortune</a>
+                        <a routerLink="wheel-of-fortune">Wheel of fortune</a>
                       </li>
                       <li class="menu li">
-                        <a href="poke-scrambler">Pok&eacute;mon name</a>
+                        <a routerLink="poke-scrambler">Pok&eacute;mon name</a>
                       </li>
                       <li class="menu li">
-                        <a href="kluis">Crack the vault</a>
+                        <a routerLink="kluis">Crack the vault</a>
                       </li>
                       <li class="menu li">
-                        <a href="mystery-gift">Secret code</a>
+                        <a routerLink="mystery-gift">Secret code</a>
                       </li>
                     </ul>
                   </li>
-                  <li class="menu li"><a href="jail">Jail</a></li>
+                  <li class="menu li"><a routerLink="jail">Jail</a></li>
                 </ul>
               </li>
               <li class="menu li">
-                <a href="#">Pokeworld</a>
+                <a routerLink="#">Pokeworld</a>
                 <ul class="menu">
                   <li class="menu li">
-                    <a href="trade-center">Trade</a>
+                    <a routerLink="trade-center">Trade</a>
                   </li>
                   <li class="menu li">
-                    <a href="attack/duel/invite">Duel</a>
+                    <a routerLink="attack/duel/invite">Duel</a>
                   </li>
-                  <li class="menu li"><a href="race-invite">Race</a></li>
+                  <li class="menu li"><a routerLink="race-invite">Race</a></li>
                   <li class="menu li">
-                    <a href="#">Clan &raquo;</a>
+                    <a routerLink="#">Clan &raquo;</a>
                     <ul class="menu">
                       <li class="menu li">
-                        <a href="clan-profile&clan='.$gebruiker['clan'].'"
+                        <a routerLink="clan-profile&clan='.$gebruiker['clan'].'"
                           >My clan</a
                         >
                       </li>
                       <li class="menu li">
-                        <a href="clan-make">New clan</a>
+                        <a routerLink="clan-make">New clan</a>
                       </li>
                       <li class="menu li">
-                        <a href="clan-invite">Invite players</a>
+                        <a routerLink="clan-invite">Invite players</a>
                       </li>
                       <li class="menu li">
-                        <a href="clan-rank">Clan rank</a>
+                        <a routerLink="clan-rank">Clan rank</a>
                       </li>
                     </ul>
                   </li>
                 </ul>
               </li>
               <li class="menu li">
-                <a href="area-market"
+                <a routerLink="area-market"
                   >Premium
                   <img
                     src="../assets/images/items/Poke ball.png"

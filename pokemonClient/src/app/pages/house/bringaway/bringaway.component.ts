@@ -59,4 +59,14 @@ export class BringawayComponent implements OnInit {
       this.over = over - inhouse;
     });
   }
+  takeAway(id: number) {
+    this._pokemon
+      .takAwayPokemon({
+        id,
+      })
+      .subscribe(() => {
+        this.over -= 1;
+        this.pokemons = this.pokemons.filter((p) => p.id != id);
+      });
+  }
 }

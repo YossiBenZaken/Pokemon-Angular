@@ -20,8 +20,7 @@ router.get('/getUserPokemon', async (req, res) => {
     "SELECT pw.naam, pw.type1, pw.type2, pw.zeldzaamheid, pw.groei, pw.aanval_1, pw.aanval_2, pw.aanval_3, pw.aanval_4, ps.* FROM pokemon_wild AS pw INNER JOIN pokemon_speler AS ps ON ps.wild_id = pw.wild_id WHERE ps.user_id=? AND ps.opzak='ja' ORDER BY ps.opzak_nummer ASC",
     [req.userId]
   );
-  if (data.length === 0) res.sendStatus(404);
-  else res.send(data);
+  res.send(data);
 });
 router.get('/getAllUserPokemon', async (req, res) => {
   const data = await query(

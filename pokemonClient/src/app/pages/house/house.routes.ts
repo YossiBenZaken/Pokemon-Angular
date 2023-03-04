@@ -18,4 +18,9 @@ export const HouseRoutes: Routes = [
     loadComponent: () =>
       import('./pickup/pickup.component').then((m) => m.PickupComponent),
   },
+  {
+    path: 'release',
+    loadComponent: () =>
+      import('./release/release.component').then((m) => m.ReleaseComponent),
+  },
 ];
