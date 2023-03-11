@@ -51,4 +51,13 @@ router.get('/getUserBuddies', async (req, res) => {
     myfriends,
   });
 });
+
+router.get('/getUserItems', async (req, res) => {
+  const items = await query(
+    'SELECT gebruikers_item.*, gebruikers_tmhm.* FROM gebruikers_item INNER JOIN gebruikers_tmhm ON gebruikers_item.user_id = gebruikers_tmhm.user_id WHERE gebruikers_item.user_id = ?',
+    [req.userId]
+  );
+  res.send(items[0]);
+});
+
 module.exports = router;

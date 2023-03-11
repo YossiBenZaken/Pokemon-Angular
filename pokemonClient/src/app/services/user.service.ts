@@ -39,6 +39,13 @@ export class UserService {
       },
     });
   }
+  getUserItems() {
+    return this._http.get<any[]>(this.url + '/getUserItems', {
+      headers: {
+        Authorization: this.token(),
+      },
+    });
+  }
   token(): string {
     if (localStorage.getItem('token')) {
       return localStorage.getItem('token')!;

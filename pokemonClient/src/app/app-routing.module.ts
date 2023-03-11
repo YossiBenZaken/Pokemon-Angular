@@ -111,6 +111,11 @@ export const routes: Routes = [
       import('./pages/house/house.routes').then((m) => m.HouseRoutes),
   },
   {
+    path: 'items',
+    loadComponent: () =>
+      import('./pages/items/items.component').then((m) => m.ItemsComponent),
+  },
+  {
     path: 'area-market',
     loadComponent: () =>
       import('./pages/area-market/area-market.component').then(
