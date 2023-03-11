@@ -46,6 +46,13 @@ export class UserService {
       },
     });
   }
+  getUserBadges() {
+    return this._http.get<any>(this.url + '/getUserBadges', {
+      headers: {
+        Authorization: this.token(),
+      },
+    });
+  }
   token(): string {
     if (localStorage.getItem('token')) {
       return localStorage.getItem('token')!;

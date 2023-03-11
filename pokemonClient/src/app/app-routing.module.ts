@@ -122,4 +122,9 @@ export const routes: Routes = [
         (m) => m.AreaMarketComponent
       ),
   },
+  {
+    path: 'badges',
+    loadComponent: () =>
+      import('./pages/badges/badges.component').then((m) => m.BadgesComponent),
+  },
 ];

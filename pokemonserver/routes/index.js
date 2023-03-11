@@ -60,4 +60,12 @@ router.get('/getUserItems', async (req, res) => {
   res.send(items[0]);
 });
 
+router.get('/getUserBadges', async (req, res) => {
+  const badges = await query(
+    'SELECT * FROM gebruikers_badges WHERE user_id = ?',
+    [req.userId]
+  );
+  res.send(badges);
+});
+
 module.exports = router;
